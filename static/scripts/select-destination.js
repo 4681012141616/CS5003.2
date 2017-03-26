@@ -1,3 +1,4 @@
+/*---------------select-destionation on the map----------------------*/
 var destinationInfo = $('#destination-info'), infoShown = false;
 
 var $searchResultContainer = $('#search-result');
@@ -28,10 +29,6 @@ $('#country-select > div img:not(#map)').click(function(){
         function (data){
           displayInfo(data);
           console.log(JSON.stringify(data));
-          // renderDestinationInfo(data);
-          /*$("#tabs-1").html(data.introduction);
-           $("#tabs-2").html(data.tourist_attractions);
-           $("#tabs-3").html(data.topics);*/
         },
     error: function () {
       console.log("Error. Information not found.");
@@ -59,7 +56,10 @@ function displayInfo( data ) {
   for (var i in data.cities)
     destinationInfo.prepend('<p>' + data.cities[i] + '</p>');
   destinationInfo.prepend('<h3>' + data.fullName + '</h3>');
+
 }
+
+
 
 /*var fullName = {
   'eu-east': 'Eastern Europe and Russia',

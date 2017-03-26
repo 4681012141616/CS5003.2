@@ -147,6 +147,7 @@ h3 {
 }
 #destination-info p:hover{
   background: rgb(200,230,245);
+  cursor: pointer;
 }
 
 
