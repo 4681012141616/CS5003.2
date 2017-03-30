@@ -24,9 +24,7 @@
     <section id='country-select'>
 
       <!--<h2>Destination Forums</h2>-->
-      <!-- More popular plural form than "fora":
 
-      https://books.google.com/ngrams/graph?content=fora%2Cforums&case_insensitive=on&year_start=1800&year_end=2000&corpus=15&smoothing=3&share=&direct_url=t4%3B%2Cfora%3B%2Cc0%3B%2Cs0%3B%3Bfora%3B%2Cc0%3B%3BFora%3B%2Cc0%3B%3BFORA%3B%2Cc0%3B.t4%3B%2Cforums%3B%2Cc0%3B%2Cs0%3B%3Bforums%3B%2Cc0%3B%3BForums%3B%2Cc0%3B%3BFORUMS%3B%2Cc0#t4%3B%2Cfora%3B%2Cc0%3B%2Cs0%3B%3Bfora%3B%2Cc0%3B%3BFora%3B%2Cc0%3B%3BFORA%3B%2Cc0%3B.t4%3B%2Cforums%3B%2Cc0%3B%2Cs0%3B%3Bforums%3B%2Cc0%3B%3BForums%3B%2Cc0%3B%3BFORUMS%3B%2Cc0 -->
       <div> <!-- this div holds the map & highlighted area outlines -->
         <img id='eu-east' src='images/highlight/eastern-europe.png'>
         <img id='nordics' src='images/highlight/nordics.png'>
@@ -45,7 +43,7 @@
         <img id='spain-pt' src='images/highlight/spain.png'>
         <img id='uk-ire' src='images/highlight/uk-ireland.png'>
         <img id='us-canada' src='images/highlight/usa-canada.png'>
-        <img id='map' src='images/map.png'>
+        <img id='world-map' src='images/map.png'>
       </div>
 
       <div id='destination-info'>
@@ -75,17 +73,25 @@
       </div>
     </div>
 
+    <section id='destination'>
+      <div id='map'></div>
+    </section>
+
   </main>
 </body>
 
 
 <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
 
-
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 
 <script src="scripts/script.js"></script>
+<script src='scripts/select-destination.js'></script>
 
+  
+<script async defer src='https://maps.googleapis.com/maps/api/js?key=AIzaSyAVYAxhVHa9EwZt9HYkoYuhNqJ8Ij1AQHY&callback=initMap'></script>
+<script src='https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js'></script>
+<script src='scripts/embed-map.js'></script>
 </html>
