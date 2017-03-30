@@ -5,7 +5,7 @@ var map, labels, markers, markerCluster, markerLocations;
 // function to focus the map on a given location (city, park, etc.)
 function showOnMap( location ) {
 
-  if (location.hasOwnProperty(markerLocations)) {
+  if (location.hasOwnProperty('markerLocations')) {
 
     // Create an array of attraction names used to label the markers.
     labels = location.tourist_attractions;
