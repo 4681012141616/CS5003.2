@@ -79,25 +79,4 @@ function displayInfo( data ) {
   'spain-pt': 'Spain and Portugal',
   'uk-ire': 'UK and Ireland',
   'us-canada': 'USA and Canada'
-}
-
-var destinationTopics = {
-  'eu-east': ['First Discussion Topic', 'Best Way to Travel from London to Moscow', 'Where in Eastern Europe do they speak Russian?'],
-  'nordics': ['Where/When can I see the Northern Lights?'],
-  's-e-asia': ['Places to stay in Borneo','Jakarta'],
-  'china': ['Great Wall of China','Hainan','Hotels in Shanghai'],
-  'africa': ['Going on Safari','Is Congo Safe?','How many malaria pills should I take?'],
-  'middle-e': ['What should I wear in Saudi Arabia?'],
-  'aus-nz': ['Flights to Fiji','Best places to see kangaroos'],
-  'balkans': ['What\'s happening with Politics in Serbia?','Interrailing the Balkans'],
-  'eu-central': ['How long should I spend in Berlin vs. Munich?'],
-  'france': ['Best Castles in Normandy','Eiffel Tower at Night','Loire Valley Tours'],
-  'italy': ['Naples and Pompeii','Venice Boat Tours'],
-  'japan': ['Rokko Island','Honshu'],
-  's-asia': ['New Delhi'],
-  's-america': ['Machu Pichu','Peru','Rio'],
-  'spain-pt': ['Barcelona'],
-  'uk-ire': ['Dublin','Scottish Highlands','London Bus Tours'],
-  'us-canada': ['Los Angeles','Washington D.C.','New York']
-}
-*/
+}*/
