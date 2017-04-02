@@ -1,8 +1,12 @@
 
 $(document).ready(function(){
 
+    /*-------------------toggle between home page and forum page------------------*/
 
-  /*  $('#menu li a').click(function() {
+    var $homePage = $("#homePage");
+    var $forumPage = $("#forumPage");
+
+  $('#menu li a').click(function() {
         $('li a.active').removeClass('active');
         var $this = $(this);
         if (!$this.hasClass('active')) {
@@ -11,30 +15,32 @@ $(document).ready(function(){
     });
 
     $("#homePageLink").click(function(){
-        $homePage.show();
-        $communityPage.hide();
-        $mainContainer.hide();
-        $map.css({"float":"none", "width":"100%"});
-
+        //$homePage.show();
+        //$forumPage.hide();
+        location.reload();
     })
 
-    $("#communityPageLink").click(function(){
+    $("#forumPageLink").click(function(){
         $homePage.hide();
-        $mainContainer.hide();
-        $communityPage.show();
-    })*/
+        $forumPage.show();
+    })
 
     /*--------get selectors----------*/
 
     var $destinationInput = $('#destinationInput');
     var $destinationInfo = $('#destination-info');
     var $searchResultContainer = $('#search-result');
+    var $forumMainContainer = $('#forumMainContainer');
+    //tab selectors
+    var $introduction = $('#tabs-1');
+    var $tourist_attractions = $("#tabs-2");
+    var $forum = $('#tabs-3');
+    var $destinationName = $('#destinationName');
 
 
     /*---------------select-destionation on the map----------------------*/
     var infoShown = false;
 
-    var $searchResultContainer = $('#search-result');
 
     $(window).resize(resized);
     $(resized);
@@ -94,24 +100,16 @@ $(document).ready(function(){
         $("#destination-info p").click(function () {
             $searchResultContainer.show();
             var selectedDestination = $(this).text();
-            console.log(selectedDestination);
             renderDestinationInfo(selectedDestination);
         })
     }
 
 
-    /*-------show details-------*/
+    /*---------------------show details--------------*/
     //initiate tabs widget from jqueryUI
     $('#tabs').tabs({
         event: "mouseover"
     });
-
-
-    //tab selectors
-    var $introduction = $('#tabs-1');
-    var $tourist_attractions = $("#tabs-2");
-    var $forum = $('#tabs-3');
-
 
     //auto complete widget from jqueryUI
     var availablePlaceTags = [
@@ -130,19 +128,21 @@ $(document).ready(function(){
     //input search and click on the search btn and render details of destination
     $('#destinationSearchBtn').click(function(){
 
-        $searchResultContainer.show();
+        //TODO: client side input validation check
 
         var destinationInputVal = $destinationInput.val().toLowerCase();
-
         renderDestinationInfo(destinationInputVal);
-
+        $searchResultContainer.show();
     })
 
 
 
-
-
     function renderDestinationInfo (destinationInputVal) {
+        $destinationName.empty();
+        $introduction.empty();
+        $tourist_attractions.empty();
+        $forum.empty();
+
        $.ajax({
            type: "GET",
            headers: {
@@ -157,21 +157,31 @@ $(document).ready(function(){
                    console.log(JSON.stringify(data));
 
                    var destination = data.place_name.toUpperCase()+" - "+data.country_name.toUpperCase();
-                   $("#search-result h3").text(destination);
+                   $destinationName.text(destination);
                    $introduction.html(data.introduction);
                    var tourist_attractions=data.tourist_attractions;
-                   $tourist_attractions.empty();
+
                    $.each(tourist_attractions, function(i,val){
                        $tourist_attractions.append("<p>"+val+"</p>")
                    })
-                   $forum.empty();
+
                    var topics = data.topics;
                    $.each(topics, function(i, val) {
                        $forum.append("<div class='forumList'><a href='#'>"+val+"</a></div>");
                    })
+                   $forum.append("<div><button class='gotoForumBtn'>go to forum</button></div>");
+
+                   $(".gotoForumBtn").click(function(){
+                       $homePage.hide();
+                       $("#homePageLink").removeClass('active');
+                       $("#forumPageLink").addClass('active');
+                       renderDestinationTopics(data._id);
+                       $forumPage.show();
+                   })
 
                },
            error: function () {
+               alert("Not found");
                console.log("Error. Information not found.");
            }
 
@@ -179,78 +189,91 @@ $(document).ready(function(){
 
     }
 
+    //redirect to the forum page and render a full list of topics with short content, reply numbers...
+    function renderDestinationTopics(id) {
+        $.ajax({
+            type: "GET",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'text/plain',
+            },
+            dataType: "json",
+            url: "/destination-topics/"+id,
+            success: function (data){
+                $forumMainContainer.empty();
+                renderTopics(data);
+            },
+            error: function () {
+                console.log("error");
+            }
+        });
+
+    }
 
 
+    /*---------add a new topic------------*/
+    var $addNewTopicForm = $("#addNewTopicForm");
+    $('#addTopicBtn').click(function(){
+        $addNewTopicForm.show();
+
+        //TODO:add client side validation here, to check all input fields
+
+        $("#submitNewTopicBtn").click(function(){
+            var topic = $("#newTopic").val();
+            var userId = $("#userId").val();
+            var content = $("#newTopicContent").val();
+            var destinationId = $("#topicDestinationSelect").val();
+            var date = moment().format('DD MMMM YYYY, HH:mm');
+
+            var newTopic = new window.hello.Topic(topic, userId, content, destinationId, date);
+
+           console.log(newTopic);
+            $.ajax({
+                type: "post",
+                dataType: "json",
+                contentType : 'application/json',
+                url: "/add-new-topic",
+                data: JSON.stringify(newTopic),
+                success: function(){console.log("post success")},
+                error: function() {console.log("post fail")}
+            });
+
+        })
+    })
 
 
+    /*----------search a topic------------*/
+    $('#topicSearchBtn').click(function(){
+        var topicSearchInput = $('#topicSearchInput').val();
 
-  /*$('#search').click(function() {
-    //event.preventDefault();
-    var searchTopic = $('#topic').val();
-    var searchDestination =$('#destination').val();
-    $.ajax({
-       type: "GET",
-       headers: {
-           'Accept': 'application/json',
-           'Content-Type': 'text/plain',
-       },
-       dataType: "json",
-       url: "obj/"+searchTopic,
-       //crossDomain: true,
-       success: function (data){
+        //TODO: client side input validation check
 
-         //console.log(dataset);
-         $("#demo").text(JSON.stringify(data));
-       },
-       error: function () {
-         console.log("error");
-       }
-   });
+        $.ajax({
+            type: "get",
+            dataType: "json",
+            contentType : 'application/json',
+            url: "/topics/"+topicSearchInput,
+            success: function(data){
+                //console.log(JSON.stringify(data));
+                $forumMainContainer.empty();
+                renderTopics(data);
+            },
+            error: function() {
+                console.log("error")
+            }
+        })
 
+    })
 
-   $.ajax({
-      type: "GET",
-      headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'text/plain',
-      },
-      dataType: "json",
-      url: "destination/"+searchDestination,
-      //crossDomain: true,
-      success: function (data){
-
-        //console.log(dataset);
-        $("#demo").text(JSON.stringify(data));
-      },
-      error: function () {
-        console.log("error");
-      }
-  });
-  })
-
-$("#addPost").click(function(){
-  var title = $('#postTitle').val();
-  var destination = $('#postDes').val();
-  var topic = $('#postTopic').val();
-  var content = $('#postContent').val();
-
-  var postData = {
-    title: title,
-    destionation: destination,
-    topic: topic,
-    body: content
-  }
-
-  $.ajax({
-    type: "post",
-    dataType: "json",
-    contentType : 'application/json',
-    url: "/post",
-    data: JSON.stringify(postData),
-    success: function(){console.log("successful")},
-    error: function() {console.log("error")}
-  });
-})*/
+    function renderTopics(data) {
+        var topicList = data;
+        $.each(topicList, function(i, val){
+            var contentPreview = topicList[i].value.content.substr(0,300)+"...";
+            $forumMainContainer.append("<div><h4><a href='#'>"+topicList[i].value.topic +"</a></h4>"
+                +"<p>by "+topicList[i].value.userId+",\t"+topicList[i].value.date+",\t Reply Numbers: "+topicList[i].value.replies.length+"</p>"
+                +"<p>"+contentPreview+"</p></div>");
+        });
+    }
 
 
 

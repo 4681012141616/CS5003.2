@@ -61,22 +61,4 @@ function displayInfo( data ) {
 
 
 
-/*var fullName = {
-  'eu-east': 'Eastern Europe and Russia',
-  'nordics': 'Nordic Countries',
-  's-e-asia': 'Southeast Asia',
-  'china': 'China',
-  'africa': 'Africa',
-  'middle-e': 'Middle East',
-  'aus-nz': 'Oceania and the Pacific',
-  'balkans': 'Balkans',
-  'eu-central': 'Central Europe',
-  'france': 'France',
-  'italy': 'Italy',
-  'japan': 'Japan',
-  's-asia': 'South Asia',
-  's-america': 'South and Central America',
-  'spain-pt': 'Spain and Portugal',
-  'uk-ire': 'UK and Ireland',
-  'us-canada': 'USA and Canada'
-}*/
+

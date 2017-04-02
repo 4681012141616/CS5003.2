@@ -14,13 +14,22 @@
     <h1>Tri<span>pp</span>in</h1><img src='images/panda.png'><h1>Panda</h1>
   </header>
 
-  <div class="searchbar ui-widget">
-    <input type="text" class="searchInput" id="destinationInput" placeholder="Search for destinations...">
-    <button class="searchBtn" id="destinationSearchBtn">Search</button>
+
+  <div id="menu">
+    <ul>
+      <li><a id="homePageLink" class="active" href="#homePage">Home</a></li>
+      <li><a id="forumPageLink" href="#forumPage">Forum</a></li>
+    </ul>
   </div>
 
-  <main>
 
+
+  <main id="homePage">
+
+    <div class="searchbar ui-widget">
+      <input type="text" class="searchInput" id="destinationInput" placeholder="Search for destinations...">
+      <button id="destinationSearchBtn">Search</button>
+     </div>
     <section id='country-select'>
 
       <!--<h2>Destination Forums</h2>-->
@@ -53,10 +62,14 @@
         </div>
       </div>
 
+      <!--<section id='destination'>
+        <div id='map'></div>
+      </section>-->
 
     </section>
+
     <div id="search-result">
-      <h3></h3>
+      <h3 id="destinationName"></h3>
       <div id="tabs">
         <ul>
           <li><a href="#tabs-1">Introduction</a></li>
@@ -73,25 +86,49 @@
       </div>
     </div>
 
-    <section id='destination'>
-      <div id='map'></div>
-    </section>
-
   </main>
+
+  <div id="forumPage">
+    <div class="searchbar">
+      <input type="text" class="searchInput" id="topicSearchInput" placeholder="Search for topics...">
+      <button id="topicSearchBtn">Search</button>
+      <button id="addTopicBtn">Add a Topic</button>
+    </div>
+    <div id="forumMainContainer">
+    </div>
+    <div id="addNewTopicForm">
+      Topic: <input type="text" id="newTopic"><br>
+      UserId: <input type="text" id="userId"><br>
+      Content: <br><textarea rows="15" cols="100" id="newTopicContent"></textarea><br>
+      Select a destination forum:
+        <select id="topicDestinationSelect">
+          <option value="london">London</option>
+          <option value="belfast">Belfast</option>
+          <option value="berlin">Berlin</option>
+        </select>
+      <br>
+
+      <button id="submitNewTopicBtn">Submit</button>
+
+    </div>
+  </div>
 </body>
 
 
 <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
+
 
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 
 <script src="scripts/script.js"></script>
-<script src='scripts/select-destination.js'></script>
+<script src="scripts/model.js"></script>
+<script src="scripts/moment.js"></script>
 
-  
-<script async defer src='https://maps.googleapis.com/maps/api/js?key=AIzaSyAVYAxhVHa9EwZt9HYkoYuhNqJ8Ij1AQHY&callback=initMap'></script>
-<script src='https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js'></script>
+<!--<script async defer src='https://maps.googleapis.com/maps/api/js?key=AIzaSyAVYAxhVHa9EwZt9HYkoYuhNqJ8Ij1AQHY&callback=initMap'></script>
+<script src='https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js'></script>-->
+
 <script src='scripts/embed-map.js'></script>
+
 </html>

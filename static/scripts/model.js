@@ -1,8 +1,5 @@
 //store different classes
 
-var moment = require("moment");
-//store different classes
-
 class Topic {
     constructor(topic, userId, content, destinationId, date) {
         this._id = topic.replace(/\s/g,"_");
@@ -49,4 +46,3 @@ if(typeof __dirname == 'undefined')
     window.hello = moduleExports;
 else
     module.exports = moduleExports;
-
