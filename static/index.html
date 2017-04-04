@@ -1,121 +1,150 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Trippin' Panda</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <title>Trippin' Panda</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/forum.css">
 
 </head>
 
 <body>
-  <header>
-    <h1>Tri<span>pp</span>in</h1><img src='images/panda.png'><h1>Panda</h1>
-  </header>
+<header>
+    <h1>Tri<span>pp</span>in</h1><img src='images/panda.png'>
+    <h1>Panda</h1>
+</header>
 
 
-  <div id="menu">
+<div id="menu">
     <ul>
-      <li><a id="homePageLink" class="active" href="#homePage">Home</a></li>
-      <li><a id="forumPageLink" href="#forumPage">Forum</a></li>
+        <li><a id="homePageLink" class="active" href="#homePage">Home</a></li>
+        <li><a id="forumPageLink" href="#forumPage">Forum</a></li>
     </ul>
-  </div>
+
+    <div id="register-login">
+        <div id="register"><a href="#register">Register</a></div>
+        <div id="login"><a href="#login">Login</a></div>
+    </div>
+</div>
 
 
+<!--<div id="loginDialog" title="Login">
 
-  <main id="homePage">
+    <div>
+        <fieldset>
+            <label for="userId">User name</label>
+            <input type="text" name="userId" id="userId" class="text ui-widget-content ui-corner-all">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" class="text ui-widget-content ui-corner-all">
+
+            <!-- Allow form submission with keyboard without duplicating the dialog button
+            <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+        </fieldset>
+    </div>
+</div>
+-->
+
+<main id="homePage">
 
     <div class="searchbar ui-widget">
-      <input type="text" class="searchInput" id="destinationInput" placeholder="Search for destinations...">
-      <button id="destinationSearchBtn">Search</button>
-     </div>
+        <input type="text" class="searchInput" id="destinationInput" placeholder="Search for destinations...">
+        <button id="destinationSearchBtn">Search</button>
+    </div>
+
     <section id='country-select'>
 
-      <!--<h2>Destination Forums</h2>-->
+        <!--<h2>Destination Forums</h2>-->
 
-      <div> <!-- this div holds the map & highlighted area outlines -->
-        <img id='eu-east' src='images/highlight/eastern-europe.png'>
-        <img id='nordics' src='images/highlight/nordics.png'>
-        <img id='s-e-asia' src='images/highlight/south-east-asia.png'>
-        <img id='china' src='images/highlight/china.png'>
-        <img id='africa' src='images/highlight/africa.png'>
-        <img id='middle-e' src='images/highlight/middle-east.png'>
-        <img id='aus-nz' src='images/highlight/australia-nz-pacific.png'>
-        <img id='balkans' src='images/highlight/balkans.png'>
-        <img id='eu-central' src='images/highlight/central-europe.png'>
-        <img id='france' src='images/highlight/france.png'>
-        <img id='italy' src='images/highlight/italy.png'>
-        <img id='japan' src='images/highlight/japan.png'>
-        <img id='s-asia' src='images/highlight/south-asia.png'>
-        <img id='s-america' src='images/highlight/south-central-america.png'>
-        <img id='spain-pt' src='images/highlight/spain.png'>
-        <img id='uk-ire' src='images/highlight/uk-ireland.png'>
-        <img id='us-canada' src='images/highlight/usa-canada.png'>
-        <img id='world-map' src='images/map.png'>
-      </div>
-
-      <div id='destination-info'>
-        <span>Select a destination on the map</span>
-        <div>
-          <a href='#'>See all discussions</a>
+        <div> <!-- this div holds the map & highlighted area outlines -->
+            <img id='eu-east' src='images/highlight/eastern-europe.png'>
+            <img id='nordics' src='images/highlight/nordics.png'>
+            <img id='s-e-asia' src='images/highlight/south-east-asia.png'>
+            <img id='china' src='images/highlight/china.png'>
+            <img id='africa' src='images/highlight/africa.png'>
+            <img id='middle-e' src='images/highlight/middle-east.png'>
+            <img id='aus-nz' src='images/highlight/australia-nz-pacific.png'>
+            <img id='balkans' src='images/highlight/balkans.png'>
+            <img id='eu-central' src='images/highlight/central-europe.png'>
+            <img id='france' src='images/highlight/france.png'>
+            <img id='italy' src='images/highlight/italy.png'>
+            <img id='japan' src='images/highlight/japan.png'>
+            <img id='s-asia' src='images/highlight/south-asia.png'>
+            <img id='s-america' src='images/highlight/south-central-america.png'>
+            <img id='spain-pt' src='images/highlight/spain.png'>
+            <img id='uk-ire' src='images/highlight/uk-ireland.png'>
+            <img id='us-canada' src='images/highlight/usa-canada.png'>
+            <img id='world-map' src='images/map.png'>
         </div>
-      </div>
 
-      <!--<section id='destination'>
-        <div id='map'></div>
-      </section>-->
+        <div id='destination-info'>
+            <span>Select a destination on the map</span>
+            <div>
+                <a href='#'>See all discussions</a>
+            </div>
+        </div>
+
+        <!--<section id='destination'>
+          <div id='map'></div>
+        </section>-->
 
     </section>
 
     <div id="search-result">
-      <h3 id="destinationName"></h3>
-      <div id="tabs">
-        <ul>
-          <li><a href="#tabs-1">Introduction</a></li>
-          <li><a href="#tabs-2">Tourist Attractions</a></li>
-          <li><a href="#tabs-3">Forum</a></li>
-        </ul>
-        <div id="tabs-1">
-        </div>
-        <div id="tabs-2">
-        </div>
-        <div id="tabs-3">
-        </div>
+        <h3 id="destinationName"></h3>
+        <div id="tabs">
+            <ul>
+                <li><a href="#tabs-1">Introduction</a></li>
+                <li><a href="#tabs-2">Tourist Attractions</a></li>
+                <li><a href="#tabs-3">Forum</a></li>
+            </ul>
+            <div id="tabs-1">
+            </div>
+            <div id="tabs-2">
+            </div>
+            <div id="tabs-3">
+            </div>
 
-      </div>
+        </div>
     </div>
 
-  </main>
+</main>
 
-  <div id="forumPage">
+<div id="forumPage">
     <div class="searchbar">
-      <input type="text" class="searchInput" id="topicSearchInput" placeholder="Search for topics...">
-      <button id="topicSearchBtn">Search</button>
-      <button id="addTopicBtn">Add a Topic</button>
+        <input type="text" class="searchInput" id="topicSearchInput" placeholder="Search for topics...">
+        <button id="topicSearchBtn">Search</button>
+        <button id="addTopicBtn">Add a Topic</button>
     </div>
-    <div id="forumMainContainer">
-    </div>
+    <section id="forumMainContainer">
+            <h2></h2>
+            <div></div>
+    </section>
     <div id="addNewTopicForm">
-      Topic: <input type="text" id="newTopic"><br>
-      UserId: <input type="text" id="userId"><br>
-      Content: <br><textarea rows="15" cols="100" id="newTopicContent"></textarea><br>
-      Select a destination forum:
+        Topic: <input type="text" id="newTopic"><br>
+        UserId: <input type="text" id="userId"><br>
+        Content: <br><textarea rows="15" cols="100" id="newTopicContent"></textarea><br>
+        Select a destination forum:
         <select id="topicDestinationSelect">
-          <option value="london">London</option>
-          <option value="belfast">Belfast</option>
-          <option value="berlin">Berlin</option>
+            <option value="london">London</option>
+            <option value="belfast">Belfast</option>
+            <option value="berlin">Berlin</option>
         </select>
-      <br>
-
-      <button id="submitNewTopicBtn">Submit</button>
-
+        <br>
+        <button id="submitNewTopicBtn">Submit</button>
     </div>
-  </div>
+    <div id="dialog-message" title="New Topic Added">
+        <p>
+            <span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span>
+            Great! Your topic has been added successfully!
+        </p>
+    </div>
+</div>
 </body>
 
 
-<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
+<!--<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>-->
 
 
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -125,6 +154,7 @@
 <script src="scripts/script.js"></script>
 <script src="scripts/model.js"></script>
 <script src="scripts/moment.js"></script>
+<script src="scripts/populate-forum.js"></script>
 
 <!--<script async defer src='https://maps.googleapis.com/maps/api/js?key=AIzaSyAVYAxhVHa9EwZt9HYkoYuhNqJ8Ij1AQHY&callback=initMap'></script>
 <script src='https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js'></script>-->

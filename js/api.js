@@ -9,6 +9,7 @@ var bodyParser = require('body-parser');
 var dao = require('./dao');
 var model = require('./model');
 
+
 var mydb = new dao.DAO();
 
 
@@ -35,7 +36,7 @@ function configureApp(app) {
 
     app.get("/destination/:objid", function (req, res, next) {
         let id = req.params.objid;
-        mydb.fetchDestination(id, function (err, result) {
+        mydb.fetchDetails(id, function (err, result) {
             if (err) {
                 res.status(err.headers.status).end();
             } else {
@@ -44,10 +45,27 @@ function configureApp(app) {
         });
     });
 
+    app.get("/destination/img/:objid", function (req, res, next) {
+        let id = req.params.objid.replace(".jpg","");
+        let filename = req.params.objid;
+
+        res.setHeader("Content-Type", "image/jpeg");
+
+        mydb.fetchImage(id, filename, function (err, result) {
+            if (err) {
+                console.dir(err)
+                return
+            } else {
+                //console.dir(result);
+                res.status(200).send(result.body);
+            }
+        })
+    });
+
 
     app.get("/region-cities/:objid", function (req, res, next) {
         let id = req.params.objid;
-        mydb.fetchDestination(id, function (err, result) {
+        mydb.fetchDetails(id, function (err, result) {
             if (err) {
                 res.status(err.headers.status).end();
             } else {
@@ -68,7 +86,7 @@ function configureApp(app) {
     });
 
     //search a topic
-    app.get("/topics/:objid", function (req, res, next) {
+    app.get("/search-topics/:objid", function (req, res, next) {
         let id = req.params.objid;
         mydb.getTemporaryView(id, function(err, result) {
             if(err) {
@@ -78,6 +96,17 @@ function configureApp(app) {
             }
         })
 
+    });
+
+    app.get("/topic/:objid", function (req, res, next) {
+        let id = req.params.objid;
+        mydb.fetchDetails(id, function (err, result) {
+            if (err) {
+                res.status(err.headers.status).end();
+            } else {
+                res.status(200).send(result);
+            }
+        });
     });
 
     app.post("/add-new-topic", function (req, res, next) {

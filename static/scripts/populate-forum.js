@@ -1,5 +1,5 @@
 var replyHTML, nestedParity = 1, numComments, newCommentText,
-    replyLink = "<u>Reply</u><div class='replyBox'><button>Post</button><div contenteditable></div>";
+    replyLink = "<u>Reply</u><div class='replyBox'><button class='postBtn'>Post</button><div contenteditable></div>";
 
 $(function(){ populateForum(testForum); });
 
@@ -10,8 +10,9 @@ function populateForum( forum ) {
   
   $('h2').html(forum.topic + '<span>' + forum.userId + '</span>');
 
-  $('section div').remove();
-  $('section').append(addReply(forum.replies[0], 0));
+  $('#forumMainContainer').empty();
+  $("#forumMainContainer").append("<h2>"+forum.topic + '<span>' + forum.userId + '</span></h2>');
+  $('#forumMainContainer').append(addReply(JSON.parse(forum.replies)[0], 0));
 
 
   function addReply( reply, parity ) {
@@ -21,9 +22,9 @@ function populateForum( forum ) {
       replyHTML += '<span>' + reply.points + "</span><img src='images/upvote.png'> ";
 
     replyHTML += reply.userId + '</h3><p>' + reply.replyContent + '</p>' + replyLink + '</div>';
-
+console.log(reply.children);
     for (var i in reply.children.sort(function(a,b){return forum.replies[b].points - forum.replies[a].points}))
-      replyHTML += addReply(forum.replies[reply.children[i]], 1-parity);
+      replyHTML += addReply(JSON.parse(forum.replies)[reply.children[i]], 1-parity);
  
     return replyHTML + '</div>';
   }
@@ -39,7 +40,7 @@ function populateForum( forum ) {
 function resetCommentListeners() {
 
   $('u').unbind();
-  $('button').unbind();
+  $('.postBtn').unbind();
 
   $('u').click(function(){
     $('u').show();
@@ -50,7 +51,7 @@ function resetCommentListeners() {
   });
 
 
-  $('button').click(function(){
+  $('.postBtn').click(function(){
     $('u').show();
     $(this).parent().hide();
     if ($(this).parent().find('div').html() == '') return;
@@ -74,7 +75,7 @@ function resetCommentListeners() {
 
 
 // example data only
-var testForum = {
+/*var testForum = {
   '_id': 'suggest_dinner_restaurant_for_first_night_in_london',
   '_rev': 'blerahrgjhegahg',
   'date': '24 March 2017, 22:39',
@@ -189,4 +190,4 @@ var testProfile = {
       
     }
   ]
-}
+}*/

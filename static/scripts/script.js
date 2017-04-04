@@ -15,9 +15,9 @@ $(document).ready(function(){
     });
 
     $("#homePageLink").click(function(){
-        //$homePage.show();
-        //$forumPage.hide();
-        location.reload();
+        $homePage.show();
+        $forumPage.hide();
+        //location.reload();
     })
 
     $("#forumPageLink").click(function(){
@@ -136,7 +136,7 @@ $(document).ready(function(){
     })
 
 
-
+//render details of a place, including introduction, tourist attractions and some topics
     function renderDestinationInfo (destinationInputVal) {
         $destinationName.empty();
         $introduction.empty();
@@ -158,9 +158,14 @@ $(document).ready(function(){
 
                    var destination = data.place_name.toUpperCase()+" - "+data.country_name.toUpperCase();
                    $destinationName.text(destination);
-                   $introduction.html(data.introduction);
-                   var tourist_attractions=data.tourist_attractions;
+                   //TODO: load image
+                   var imgUrl = "/destination/img/" + data._id +".jpg";
 
+                   $introduction.text(data.introduction);
+
+                   $introduction.append("<img src="+imgUrl+">");
+
+                   var tourist_attractions=data.tourist_attractions;
                    $.each(tourist_attractions, function(i,val){
                        $tourist_attractions.append("<p>"+val+"</p>")
                    })
@@ -201,7 +206,7 @@ $(document).ready(function(){
             url: "/destination-topics/"+id,
             success: function (data){
                 $forumMainContainer.empty();
-                renderTopics(data);
+                renderTopicList(data);
             },
             error: function () {
                 console.log("error");
@@ -214,6 +219,8 @@ $(document).ready(function(){
     /*---------add a new topic------------*/
     var $addNewTopicForm = $("#addNewTopicForm");
     $('#addTopicBtn').click(function(){
+
+        $forumMainContainer.empty();
         $addNewTopicForm.show();
 
         //TODO:add client side validation here, to check all input fields
@@ -224,18 +231,37 @@ $(document).ready(function(){
             var content = $("#newTopicContent").val();
             var destinationId = $("#topicDestinationSelect").val();
             var date = moment().format('DD MMMM YYYY, HH:mm');
+            var replies = [];
 
-            var newTopic = new window.hello.Topic(topic, userId, content, destinationId, date);
+            var newTopic = new window.hello.Topic(topic, userId, content, destinationId, date, replies).toJSON();
+            console.log(newTopic);
 
-           console.log(newTopic);
             $.ajax({
                 type: "post",
                 dataType: "json",
                 contentType : 'application/json',
                 url: "/add-new-topic",
                 data: JSON.stringify(newTopic),
-                success: function(){console.log("post success")},
-                error: function() {console.log("post fail")}
+                success: function(){
+                    console.log("success")
+
+                    $addNewTopicForm.hide();
+
+                    $( "#dialog-message" ).dialog({
+                        modal: true,
+                        buttons: {
+                            Ok: function() {
+                                $( this ).dialog( "close" );
+                                $forumMainContainer.show();
+                            }
+                        }
+                    });
+
+                },
+                //TODO after submission go back page
+                error: function() {
+                    console.log("fail")
+                }
             });
 
         })
@@ -252,11 +278,11 @@ $(document).ready(function(){
             type: "get",
             dataType: "json",
             contentType : 'application/json',
-            url: "/topics/"+topicSearchInput,
+            url: "/search-topics/"+topicSearchInput,
             success: function(data){
                 //console.log(JSON.stringify(data));
                 $forumMainContainer.empty();
-                renderTopics(data);
+                renderTopicList(data);
             },
             error: function() {
                 console.log("error")
@@ -265,14 +291,39 @@ $(document).ready(function(){
 
     })
 
-    function renderTopics(data) {
+
+
+    function renderTopicList(data) {
         var topicList = data;
         $.each(topicList, function(i, val){
             var contentPreview = topicList[i].value.content.substr(0,300)+"...";
-            $forumMainContainer.append("<div><h4><a href='#'>"+topicList[i].value.topic +"</a></h4>"
+            //var topicUrl = "/topic/"+topicList[i].value._id;
+            $forumMainContainer.append("<div><h4><a href='#topic'>"+topicList[i].value.topic +"</a></h4>"
                 +"<p>by "+topicList[i].value.userId+",\t"+topicList[i].value.date+",\t Reply Numbers: "+topicList[i].value.replies.length+"</p>"
                 +"<p>"+contentPreview+"</p></div>");
         });
+
+        //click topic name and render details of one topic
+        $("#forumMainContainer div h4").click(function() {
+            var topicName = $(this).text();
+
+            $.ajax({
+                type: "get",
+                dataType: "json",
+                contentType : 'application/json',
+                url: "/topic/"+topicName.toLowerCase().replace(/\s/g,"_"),
+                success: function(data){
+                    //$forumMainContainer.empty();
+                    //TODO topic page css (reply btn, go back btn include)
+                    //$forumMainContainer.text(JSON.stringify(data));
+                    //console.log(JSON.stringify(data));
+                    populateForum(data);
+                },
+                error: function() {
+                    console.log("error")
+                }
+            })
+        })
     }
 
 

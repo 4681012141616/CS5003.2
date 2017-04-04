@@ -21,13 +21,22 @@ class DAO {
             .database("trippinpanda");
     }
 
-    fetchDestination(id, callback) {
+    fetchDetails(id, callback) {
         if (typeof callback == 'function') {
             this.db.get(id, callback);
         }
         else
             throw new TypeError('Callback not a function');
     }
+
+    fetchImage(id, filename, callback) {
+        if (typeof callback == 'function') {
+            this.db.getAttachment(id, filename, callback);
+        }
+        else
+            throw new TypeError('Callback not a function');
+    }
+
 
     //get a view of a list of topics based on the destination
     fetchDestinationTopics(id, callback) {

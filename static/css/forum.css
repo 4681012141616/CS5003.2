@@ -51,7 +51,7 @@ section > div {
   background: transparent;
 }
 
-img {
+#forumMainContainer img {
   height: 24px;
   margin: -6px 0;
 }
@@ -83,7 +83,7 @@ u:hover {
   background: white;
 }
 
-button {
+.postBtn {
   float: right;
   height: 52px;
   width: 60px;
