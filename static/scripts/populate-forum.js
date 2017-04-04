@@ -7,11 +7,8 @@ $(function(){ populateForum(testForum); });
 
 function populateForum( forum ) {
   numComments = forum.replies.length;
-  
-  $('h2').html(forum.topic + '<span>' + forum.userId + '</span>');
 
-  $('#forumMainContainer').empty();
-  $("#forumMainContainer").append("<h2>"+forum.topic + '<span>' + forum.userId + '</span></h2>');
+  $('#forumMainContainer').html('<h2>' + forum.topic + '<span>' + forum.userId + '</span></h2>');
   $('#forumMainContainer').append(addReply(JSON.parse(forum.replies)[0], 0));
 
 
@@ -22,7 +19,7 @@ function populateForum( forum ) {
       replyHTML += '<span>' + reply.points + "</span><img src='images/upvote.png'> ";
 
     replyHTML += reply.userId + '</h3><p>' + reply.replyContent + '</p>' + replyLink + '</div>';
-console.log(reply.children);
+
     for (var i in reply.children.sort(function(a,b){return forum.replies[b].points - forum.replies[a].points}))
       replyHTML += addReply(JSON.parse(forum.replies)[reply.children[i]], 1-parity);
  
@@ -68,6 +65,15 @@ function resetCommentListeners() {
 
     // TODO: function here to post comment to database
 
+  });
+
+
+  $('#forumMainContainer img').click(function(){
+    $(this).parent().find('span').css({
+      'color': '#0F0',
+      'text-shadow': '0 1px 1px black'
+    });
+    $(this).attr('src','images/downvote.png');
   });
 }
 
