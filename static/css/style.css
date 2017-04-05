@@ -369,22 +369,50 @@ button {
   display: none;
 }
 
-#register-login {
+#register-login, #afterLogin {
   float: right;
 }
 
-#register-login div {
+#register-login div, #afterLogin div {
   display: inline-block;
   padding: 8px 15px 8px 5px;
 
 }
 
-#loginDialog {
+#loginDialog, #registerDialog {
+  background-color: whitesmoke;
   width: 400px;
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -200px;
+  z-index: 200;
+
+}
+
+#loginDialog p {
+  color: #1EAEDB;
+  font-size: 12px;
+}
+
+
+#afterLogin {
   display: none;
 }
 
-#registerDialog {
-  width: 400px;
+input:invalid{
+  border-color: red;
+}
 
+.mask {
+  position:fixed;
+  top:0px;
+  bottom:0px;
+  left:0px;
+  right:0px;
+  z-index:100;
+  opacity: 0.5;
+  background-color: white;
+  display: none;
 }

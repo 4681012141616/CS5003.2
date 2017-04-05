@@ -1,15 +1,13 @@
 //the RESTful interface
 //need to access the model and dao
 
-
-//var subdir = '/CS5003/TrippinPanda';
-
 var express = require('express');
 var session = require('express-session');
 var bodyParser = require('body-parser');
 var dao = require('./dao');
 var model = require('./model');
-var basicAuth = require('basic-auth');
+var CryptoJS = require('crypto-js');
+var SHA256 = require('crypto-js/sha256');
 
 
 var mydb = new dao.DAO();
@@ -105,22 +103,6 @@ function configureApp(app) {
     });
 
 
-    app.post("/login", authenticate);
-
-    app.post("/topic", isLogin, function (req, res, next) {
-        //console.log('topic login');
-        var newTopic = model.Topic.fromJSON(req.body);
-        if (newTopic) {
-            mydb.insertData(newTopic, function (err, result) {
-                if (err) {
-                    res.status(500).send({status: 500, message: 'internal error', type: 'internal'});
-                } else {
-                    res.send({success: true});
-                }
-            });
-        }
-    });
-
     app.post("/register", isExist, function (req, res, next) {
         var newUser = model.User.fromJSON(req.body);
         //console.log(newUser);
@@ -136,10 +118,46 @@ function configureApp(app) {
     })
 
 
+    app.post("/login", authenticate);
+
+    app.get("/user/:objid", function (req, res, next) {
+      let id = req.params.objid;
+      mydb.fetchUser(id, function (err, result) {
+        if (err) {
+            res.status(err.headers.status).end();
+        } else {
+            res.status(200).send(result);
+        }
+      });
+    });
+
+    app.post("/topic", isLogin, function (req, res, next) {
+        //console.log('topic login');
+        var newTopic = model.Topic.fromJSON(req.body);
+        if (newTopic) {
+            mydb.insertData(newTopic, function (err, result) {
+                if (err) {
+                    res.status(500).send({status: 500, message: 'internal error', type: 'internal'});
+                } else {
+                    res.send({success: true});
+                }
+            });
+        }
+    });
+
+
     app.put("/obj/:objid", function (req, res, next) {
 
         res.status(200).end("put obj");
     });
+
+    app.get('/logout', function(req, res) {
+      //res.send('<h1>Logout:'+ req.session.user_id+'</h1> ');
+      console.log("Log out:"+req.session.user_id);
+      res.redirect('back');
+      delete req.session.user_id;
+    })
+
     app.use('/', express.static('static'));
 
 }
@@ -151,24 +169,23 @@ function authenticate(req, res, next) {
             console.log(err)
             res.status(500).send({status: 500, message: 'internal error', type: 'internal'});
         } else {
-            console.log(result)
-            if (req.body.password != result[0].value.password) {
+            if (SHA256(req.body.password).toString(CryptoJS.enc.Base64) != result[0].value.passwordHash) {
                 res.sendStatus(401);
             } else {
                 req.session.user_id = result[0].value._id;
-                res.status(200).json(req.body);
-
+                req.session.cookie.expires = new Date(Date.now() + 600000);
+                res.status(200).json(result[0].value.username);
             }
         }
     })
 }
 
 function isLogin(req, res, next) {
-    if (req.session.user_id) {
-        next()
+    if (!req.session.user_id) {
+        res.status(401).end("You haven't logged in yet.");
     }
     else {
-        res.status(401).end();
+        next();
     }
 }
 

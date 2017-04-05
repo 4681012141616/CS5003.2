@@ -136,32 +136,37 @@
         </div>
     </div>
 
-  <div id="loginDialog">
-
-    <div>
-            <label for="username">User name</label>
-            <input type="text" name="username" id="username"><br>
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password"><br>
-            <button id="loginBtn">Sign in</button>
+    <div id="loginDialog">
+        <fieldset>
+            <legend>Login Form</legend>
+                User Name:
+                <input type="text" name="username" id="username"><br>
+                Password:
+                <input type="password" name="password" id="password"><br>
+                <button id="loginBtn">Sign in</button>
+                <button id="loginCancel">Cancel</button><br>
+            <p>* Not having an account? Why not <a href="#">sign up</a> now!</p>
+        </fieldset>
     </div>
-  </div>
 
 
     <div id="registerDialog">
 
         <fieldset>
             <legend>Register Form</legend>
-            <label for="newusername">User Name</label>
+            User Name:
             <input type="text" name="username" id="newusername" placeholder = "john"><br>
-            <label for="newemail">E-mail</label>
+            E-mail:
             <input type="email" name="email" id="newemail" placeholder = "john@gmail.com"><br>
-            <label for="password">Password</label>
+            Password:
             <input type="password" name="password" id="newpassword"><br>
             <button id="registerBtn">Register</button>
+            <button id="registerCancel>">Cancel</button>
 
         </fieldset>
     </div>
+
+    <div class="mask"></div>
 
 
     <section id='profileMainContainer'>
