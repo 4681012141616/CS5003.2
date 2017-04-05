@@ -1,0 +1,62 @@
+#profileMainContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin: 15vh 10vw;
+  height: 70vh;
+  width: 80vw;
+  background: white;
+  border-radius: 7px;
+  border: 2px solid rgb(220,230,255);
+  overflow: scroll;
+  display: none;
+}
+
+#profileMainContainer img {
+  position: fixed;
+  top: 15.5vh;
+  right: 10vw;
+  height: 40px;
+}
+#profileMainContainer img:hover {
+  cursor: pointer;
+}
+
+#profileMainContainer h2, h4 {
+  margin: 0;
+}
+
+#profileMainContainer h3 {
+  margin: 4vh 2vh 1vh;
+  clear: both;
+}
+
+.post {
+  padding: 0;
+}
+
+#profileMainContainer > span {
+  margin: 1vh 2vh;
+  padding: 10px;
+  float: left;
+  background: rgb(220,230,255);
+}
+#profileMainContainer > span:hover {
+  cursor: pointer;
+  background: rgb(200,220,245);
+}
+
+.post {
+  border-left: 2px solid rgb(220,230,255);
+  border-bottom: 2px solid rgb(220,230,255);
+}
+.post p {
+  margin: 3px;
+}
+
+h4 {
+  margin-bottom: 3px;
+  padding: 3px;
+  background: rgb(220,230,255);
+  border-radius: 4px 4px 0 0;
+}

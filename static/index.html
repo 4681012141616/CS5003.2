@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/forum.css">
+    <link rel='stylesheet' href='css/profile.css'>
 
 </head>
 
@@ -91,6 +92,7 @@
 
     </section>
 
+
     <div id="search-result">
         <h3 id="destinationName"></h3>
         <div id="tabs">
@@ -109,36 +111,41 @@
         </div>
     </div>
 
-</main>
 
-<div id="forumPage">
-    <div class="searchbar">
-        <input type="text" class="searchInput" id="topicSearchInput" placeholder="Search for topics...">
-        <button id="topicSearchBtn">Search</button>
-        <button id="addTopicBtn">Add a Topic</button>
+    <div id="forumPage">
+        <div class="searchbar">
+            <input type="text" class="searchInput" id="topicSearchInput" placeholder="Search for topics...">
+            <button id="topicSearchBtn">Search</button>
+            <button id="addTopicBtn">Add a Topic</button>
+        </div>
+        <section id="forumMainContainer">
+        </section>
+        <div id="addNewTopicForm">
+            Topic: <input type="text" id="newTopic"><br>
+            UserId: <input type="text" id="userId"><br>
+            Content: <br><textarea rows="15" cols="100" id="newTopicContent"></textarea><br>
+            Select a destination forum:
+            <select id="topicDestinationSelect">
+                <option value="london">London</option>
+                <option value="belfast">Belfast</option>
+                <option value="berlin">Berlin</option>
+            </select>
+            <br>
+            <button id="submitNewTopicBtn">Submit</button>
+        </div>
+        <div id="dialog-message" title="New Topic Added">
+            <p>
+                <span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span>
+                Great! Your topic has been added successfully!
+            </p>
+        </div>
     </div>
-    <section id="forumMainContainer">
+
+
+    <section id='profileMainContainer'>
     </section>
-    <div id="addNewTopicForm">
-        Topic: <input type="text" id="newTopic"><br>
-        UserId: <input type="text" id="userId"><br>
-        Content: <br><textarea rows="15" cols="100" id="newTopicContent"></textarea><br>
-        Select a destination forum:
-        <select id="topicDestinationSelect">
-            <option value="london">London</option>
-            <option value="belfast">Belfast</option>
-            <option value="berlin">Berlin</option>
-        </select>
-        <br>
-        <button id="submitNewTopicBtn">Submit</button>
-    </div>
-    <div id="dialog-message" title="New Topic Added">
-        <p>
-            <span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span>
-            Great! Your topic has been added successfully!
-        </p>
-    </div>
-</div>
+
+</main>
 </body>
 
 
@@ -153,6 +160,7 @@
 <script src="scripts/model.js"></script>
 <script src="scripts/moment.js"></script>
 <script src="scripts/populate-forum.js"></script>
+<script src='scripts/populate-profile.js'></script>
 
 <!--<script async defer src='https://maps.googleapis.com/maps/api/js?key=AIzaSyAVYAxhVHa9EwZt9HYkoYuhNqJ8Ij1AQHY&callback=initMap'></script>
 <script src='https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js'></script>-->
