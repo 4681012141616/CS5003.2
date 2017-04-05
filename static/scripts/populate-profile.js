@@ -5,7 +5,7 @@ var locationId;
 function populateProfile( profile ) {
   $('#profileMainContainer').show();
 
-  $('#profileMainContainer').html('<h2>' + profile._id + '<span>Member since ' + profile.startDate + '</span></h2>');
+  $('#profileMainContainer').html('<h2>' + profile.username + '<span>Member since ' + profile.startDate + '</span></h2>');
   $('#profileMainContainer').append('<div>' + profile.bio + '</div>');
   $('#profileMainContainer').append('<h3>Favourite Places</h3>');
 

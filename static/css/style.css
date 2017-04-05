@@ -201,14 +201,6 @@ h3 {
   #uk-ire { width: 16px; margin: 41px 272px; }
   #us-canada { width: 170px; margin: 8px 59px; }
 
-  #map {
-    height: 30vw;
-    width: 30vw;
-    float: right;
-    margin-top: 0;
-    padding: 0;
-  }
-
   #destination-info {
     float: right;
     width: 20vw;
@@ -260,8 +252,15 @@ button {
   display: none;
 }
 
-#tabs {
+#map {
+  height: 400px;
+  width: 100%;
+  margin-top: 10px;
+  padding: 0;
+  border: 3px solid rgb(210,230,250);
+}
 
+#tabs {
   border-style: none;
 }
 
@@ -282,6 +281,39 @@ button {
 #tabs li a.hover {
   color: white;
   background-color: #1EAEDB;
+}
+
+#tabs-1 > div:not(.tourist-attraction) {
+  float: right;
+  width: 30vw;
+  margin-left: 30px;
+}
+
+#tabs-1 > div > img {
+  width: 30vw;
+  border: 3px solid rgb(210,230,250);
+}
+
+#tabs h4 {
+  font-size: 120%;
+  padding: 7px;
+  margin-bottom: 15px;
+}
+
+.tourist-attraction {
+  float: left;
+  margin-left: 30px;
+  width: 15vw;
+  border: 3px solid rgba(230,120,200,.3);
+  border-radius: 5px;
+  background: rgba(230,120,200,.5);
+}
+
+.tourist-attraction p {
+  text-align: center;
+  margin: 0;
+  padding: 5px;
+  font-size: 120%;
 }
 
 #search-result h3 {

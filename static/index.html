@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/forum.css">
+    <link rel='stylesheet' href='css/profile.css'>
+
 
 </head>
 
@@ -19,13 +21,27 @@
 
 <div id="menu">
     <div id="register-login">
-        <div id="register"><a href="#">Register</a></div>
-        <div id="login"><a href="#">Login</a></div>
+        <div id="register"><a href="#register">Register</a></div>
+        <div id="login"><a href="#login">Login</a></div>
     </div>
 </div>
 
 
+<!--<div id="loginDialog" title="Login">
 
+    <div>
+        <fieldset>
+            <label for="userId">User name</label>
+            <input type="text" name="userId" id="userId" class="text ui-widget-content ui-corner-all">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" class="text ui-widget-content ui-corner-all">
+
+            <!-- Allow form submission with keyboard without duplicating the dialog button
+            <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+        </fieldset>
+    </div>
+</div>
+-->
 
 <main id="homePage">
 
@@ -61,9 +77,7 @@
 
         <div id='destination-info'>
             <span>Select a destination on the map</span>
-            <div>
-                <a href='#'>See all discussions</a>
-            </div>
+            <div>Choose a Destination from the List</div>
         </div>
 
         <!--<section id='destination'>
@@ -72,59 +86,57 @@
 
     </section>
 
+
     <div id="search-result">
         <h3 id="destinationName"></h3>
         <div id="tabs">
             <ul>
-                <li><a href="#tabs-1">Introduction</a></li>
-                <li><a href="#tabs-2">Tourist Attractions</a></li>
-                <li><a href="#tabs-3">Forum</a></li>
+                <li><a href="#tabs-1">Visit</a></li>
+                <li><a href="#tabs-2">Discussion</a></li>
             </ul>
             <div id="tabs-1">
+              <div id="images">
+                <img>
+                <div id="map"></div>
+              </div>
             </div>
             <div id="tabs-2">
-            </div>
-            <div id="tabs-3">
             </div>
 
         </div>
     </div>
 
-</main>
 
-<div id="forumPage">
-    <div class="searchbar">
-        <input type="text" class="searchInput" id="topicSearchInput" placeholder="Search for topics...">
-        <button id="topicSearchBtn">Search</button>
-        <button id="addTopicBtn">Add a Topic</button>
+    <div id="forumPage">
+        <div class="searchbar">
+            <input type="text" class="searchInput" id="topicSearchInput" placeholder="Search for topics...">
+            <button id="topicSearchBtn">Search</button>
+            <button id="addTopicBtn">Add a Topic</button>
+        </div>
+        <section id="forumMainContainer">
+        </section>
+        <div id="addNewTopicForm">
+            Topic: <input type="text" id="newTopic"><br>
+            UserId: <input type="text" id="userId"><br>
+            Content: <br><textarea rows="15" cols="100" id="newTopicContent"></textarea><br>
+            Select a destination forum:
+            <select id="topicDestinationSelect">
+                <option value="london">London</option>
+                <option value="belfast">Belfast</option>
+                <option value="berlin">Berlin</option>
+            </select>
+            <br>
+            <button id="submitNewTopicBtn">Submit</button>
+        </div>
+        <div id="dialog-message" title="New Topic Added">
+            <p>
+                <span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span>
+                Great! Your topic has been added successfully!
+            </p>
+        </div>
     </div>
-    <section id="forumMainContainer">
-            <h2></h2>
-            <div></div>
-    </section>
-    <div id="addNewTopicForm">
-        Topic: <input type="text" id="newTopic"><br>
-        UserId: <input type="text" id="userId"><br>
-        Content: <br><textarea rows="15" cols="100" id="newTopicContent"></textarea><br>
-        Select a destination forum:
-        <select id="topicDestinationSelect">
-            <option value="london">London</option>
-            <option value="belfast">Belfast</option>
-            <option value="berlin">Berlin</option>
-        </select>
-        <br>
-        <button id="submitNewTopicBtn">Submit</button>
-    </div>
-    <div id="dialog-message" title="New Topic Added">
-        <p>
-            <span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span>
-            Great! Your topic has been added successfully!
-        </p>
-    </div>
-</div>
 
-
-<div id="loginDialog">
+  <div id="loginDialog">
 
     <div>
             <label for="username">User name</label>
@@ -132,32 +144,31 @@
             <label for="password">Password</label>
             <input type="password" name="password" id="password"><br>
             <button id="loginBtn">Sign in</button>
-
     </div>
-</div>
+  </div>
 
 
-<div id="registerDialog">
+    <div id="registerDialog">
 
-    <fieldset>
-        <legend>Register Form</legend>
-        <label for="newusername">User Name</label>
-        <input type="text" name="username" id="newusername" placeholder = "john"><br>
-        <label for="newemail">E-mail</label>
-        <input type="email" name="email" id="newemail" placeholder = "john@gmail.com"><br>
-        <label for="password">Password</label>
-        <input type="password" name="password" id="newpassword"><br>
-        <button id="registerBtn">Register</button>
+        <fieldset>
+            <legend>Register Form</legend>
+            <label for="newusername">User Name</label>
+            <input type="text" name="username" id="newusername" placeholder = "john"><br>
+            <label for="newemail">E-mail</label>
+            <input type="email" name="email" id="newemail" placeholder = "john@gmail.com"><br>
+            <label for="password">Password</label>
+            <input type="password" name="password" id="newpassword"><br>
+            <button id="registerBtn">Register</button>
 
-    </fieldset>
-</div>
+        </fieldset>
+    </div>
 
 
+    <section id='profileMainContainer'>
+    </section>
+
+</main>
 </body>
-
-
-<!--<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>-->
-
 
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -168,12 +179,10 @@
 <script src="scripts/model.js"></script>
 <script src="scripts/moment.js"></script>
 <script src="scripts/populate-forum.js"></script>
-
-
-
-<!--<script async defer src='https://maps.googleapis.com/maps/api/js?key=AIzaSyAVYAxhVHa9EwZt9HYkoYuhNqJ8Ij1AQHY&callback=initMap'></script>
-<script src='https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js'></script>-->
+<script src='scripts/populate-profile.js'></script>
+<script src="scripts/populate-destination.js"></script>
 
 <script src='scripts/embed-map.js'></script>
+<script async defer src='https://maps.googleapis.com/maps/api/js?key=AIzaSyAVYAxhVHa9EwZt9HYkoYuhNqJ8Ij1AQHY&callback=initMap'></script>
 
 </html>

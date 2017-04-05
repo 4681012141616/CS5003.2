@@ -31,11 +31,6 @@ $(document).ready(function(){
     var $destinationInfo = $('#destination-info');
     var $searchResultContainer = $('#search-result');
     var $forumMainContainer = $('#forumMainContainer');
-    //tab selectors
-    var $introduction = $('#tabs-1');
-    var $tourist_attractions = $("#tabs-2");
-    var $forum = $('#tabs-3');
-    var $destinationName = $('#destinationName');
 
 
     /*---------------select-destionation on the map----------------------*/
@@ -67,7 +62,6 @@ $(document).ready(function(){
             success:
                 function (data){
                     displayInfo(data);
-                    console.log(JSON.stringify(data));
                 },
             error: function () {
                 console.log("Error. Information not found.");
@@ -134,88 +128,6 @@ $(document).ready(function(){
         renderDestinationInfo(destinationInputVal);
         $searchResultContainer.show();
     })
-
-
-//render details of a place, including introduction, tourist attractions and some topics
-    function renderDestinationInfo (destinationInputVal) {
-        $destinationName.empty();
-        // leave map alone, delete everything else in $introduction / #tabs-1
-        $('#tabs-1 p').remove();
-        $tourist_attractions.empty();
-        $forum.empty();
-
-       $.ajax({
-           type: "GET",
-           headers: {
-               'Accept': 'application/json',
-               'Content-Type': 'text/plain',
-           },
-           dataType: "json",
-           url: "/destination/"+ destinationInputVal,
-           success:
-               function (data){
-
-                   console.log(JSON.stringify(data));
-
-                   var destination = data.place_name.toUpperCase() + ' - ' + data.country_name.toUpperCase();
-                   $destinationName.text(destination);
-                   //TODO: load image
-                   var imgUrl = '/destination/img/' + data._id + '.jpg';
-
-                   $('#tabs-1 > div > img').attr('src',imgUrl);
-                   showOnMap(data.latitude, data.longitude);
-                   google.maps.event.trigger(map, 'resize');
-                   $introduction.append('<p>' + data.introduction + '</p>');
-
-                   var tourist_attractions=data.tourist_attractions;
-                   $.each(tourist_attractions, function(i,val){
-                       $tourist_attractions.append("<p>"+val+"</p>")
-                   })
-
-                   var topics = data.topics;
-                   $.each(topics, function(i, val) {
-                       $forum.append("<div class='forumList'><a href='#'>"+val+"</a></div>");
-                   })
-                   $forum.append("<div><button class='gotoForumBtn'>go to forum</button></div>");
-
-                   $(".gotoForumBtn").click(function(){
-                       $homePage.hide();
-                       $("#homePageLink").removeClass('active');
-                       $("#forumPageLink").addClass('active');
-                       renderDestinationTopics(data._id);
-                       $forumPage.show();
-                   })
-
-               },
-           error: function () {
-               alert("Not found");
-               console.log("Error. Information not found.");
-           }
-
-       })
-
-    }
-
-    //redirect to the forum page and render a full list of topics with short content, reply numbers...
-    function renderDestinationTopics(id) {
-        $.ajax({
-            type: "GET",
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'text/plain',
-            },
-            dataType: "json",
-            url: "/destination/topics/"+id,
-            success: function (data){
-                $forumMainContainer.empty();
-                renderTopicList(data);
-            },
-            error: function () {
-                console.log("error");
-            }
-        });
-
-    }
 
 
     /*---------add a new topic------------*/

@@ -1,8 +1,6 @@
 var replyHTML, nestedParity = 1, numComments, newCommentText,
     replyLink = "<u>Reply</u><div class='replyBox'><button class='postBtn'>Post</button><div contenteditable></div>";
 
-$(function(){ populateForum(testForum); });
-
 
 
 function populateForum( forum ) {
@@ -22,7 +20,7 @@ function populateForum( forum ) {
 
     for (var i in reply.children.sort(function(a,b){return forum.replies[b].points - forum.replies[a].points}))
       replyHTML += addReply(JSON.parse(forum.replies)[reply.children[i]], 1-parity);
- 
+
     return replyHTML + '</div>';
   }
 
@@ -52,7 +50,7 @@ function resetCommentListeners() {
     $('u').show();
     $(this).parent().hide();
     if ($(this).parent().find('div').html() == '') return;
-      
+
     newCommentText = $(this).parent().find('div').html();
     $(this).parent().find('div').html('');
 
@@ -81,7 +79,7 @@ function resetCommentListeners() {
 
 
 // example data only
-/*var testForum = {
+var testForum = {
   '_id': 'suggest_dinner_restaurant_for_first_night_in_london',
   '_rev': 'blerahrgjhegahg',
   'date': '24 March 2017, 22:39',
@@ -170,7 +168,7 @@ function resetCommentListeners() {
 
 
 // example data only
-var testProfile = {
+/*var testProfile = {
   '_id': 'ajs38',
   '_rev': 'blerahrgygjal67384ahg',
   'startDate': 'March 2017',
@@ -191,9 +189,9 @@ var testProfile = {
       'postId': 'suggest_dinner_restaurant_for_first_night_in_london',
       'commentId': 5
     }, {
-      
+
     }, {
-      
+
     }
   ]
 }*/
