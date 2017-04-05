@@ -329,4 +329,26 @@ button {
   display: none;
 }
 
+#dialog-message {
+  display: none;
+}
 
+#register-login {
+  float: right;
+}
+
+#register-login div {
+  display: inline-block;
+  padding: 8px 15px 8px 5px;
+
+}
+
+#loginDialog {
+  width: 400px;
+  display: none;
+}
+
+#registerDialog {
+  width: 400px;
+
+}

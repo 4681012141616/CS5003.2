@@ -46,7 +46,41 @@ class Topic {
     }
 }
 
-var moduleExports = { Topic: Topic };
+class User {
+    constructor(username, password, email ) {
+        this._id = "user_"+ username;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.type = "user";
+    }
+
+    static fromJSON (json) {
+        var username = json.username;
+        var password = json.password;
+        var email = json.email;
+
+        return new User(username, password, email);
+    }
+
+    toJSON() {
+        return {
+            _id: this._id,
+            username: this.username,
+            password: this.password,
+            type: this.type,
+            email: this.email
+        }
+    }
+
+
+}
+
+var moduleExports = {
+    Topic: Topic,
+    User: User
+};
+
 if(typeof __dirname == 'undefined')
     window.hello = moduleExports;
 else

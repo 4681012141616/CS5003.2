@@ -1,7 +1,5 @@
 //data access object provides an interface for storage, use the interface to store and retrieve
 //insert into DB, fetch data, delete data
-//remember to export module
-
 
 var cradle = require('cradle');
 
@@ -11,11 +9,11 @@ var cradle = require('cradle');
 class DAO {
     constructor() {
         this.db = new (cradle.Connection)
-        ('localhost:20631',
+        ('klovia.cs.st-andrews.ac.uk:20631',
             {
                 auth: {
                     username: "yz62",
-                    password: "j473M9sz"
+                    password: "Whfk9kWK"
                 }
             })
             .database("trippinpanda");
@@ -47,6 +45,14 @@ class DAO {
             throw new TypeError('Callback not a function');
     }
 
+    fetchUser(id, callback) {
+        if (typeof callback == 'function') {
+            this.db.view("user/byUsername", {key: id}, callback);
+        }
+        else
+            throw new TypeError('Callback not a function');
+    }
+
     getTemporaryView(id, callback) {
         if (typeof callback == 'function') {
             this.db.temporaryView({
@@ -57,7 +63,7 @@ class DAO {
             throw new TypeError('Callback not a function');
     }
 
-    insertTopic(data, callback) {
+    insertData(data, callback) {
         if (typeof callback == 'function') {
             this.db.save(data, callback);
         }
