@@ -3,13 +3,15 @@
 
 var cradle = require('cradle');
 
-//connection url : http://yz62.host.cs.st-andrews.ac.uk:20631
-
 
 class DAO {
     constructor() {
         this.db = new (cradle.Connection)
+<<<<<<< HEAD
         ('klovia.cs.st-andrews.ac.uk:20631',
+=======
+        ('http://klovia.cs.st-andrews.ac.uk:20631',
+>>>>>>> origin/master
             {
                 auth: {
                     username: "yz62",
