@@ -63,7 +63,7 @@ $(document).ready(function(){
                 'Content-Type': 'text/plain',
             },
             dataType: "json",
-            url: "/region-cities/"+ $(this).attr('id'),
+            url: "/destination/"+ $(this).attr('id'),
             success:
                 function (data){
                     displayInfo(data);
@@ -156,10 +156,10 @@ $(document).ready(function(){
 
                    console.log(JSON.stringify(data));
 
-                   var destination = data.place_name.toUpperCase() + ' - ' + data.country_name.toUpperCase();
+                   var destination = data.place_name.toUpperCase()+" - "+data.country_name.toUpperCase();
                    $destinationName.text(destination);
                    //TODO: load image
-                   var imgUrl = '/destination/img/' + data._id.replace(' ','_') + '.jpg';
+                   var imgUrl = "/destination/img/" + data._id +".jpg";
 
                    $introduction.text(data.introduction);
 
@@ -203,7 +203,7 @@ $(document).ready(function(){
                 'Content-Type': 'text/plain',
             },
             dataType: "json",
-            url: "/destination-topics/"+id,
+            url: "/destination/topics/"+id,
             success: function (data){
                 $forumMainContainer.empty();
                 renderTopicList(data);
@@ -240,7 +240,7 @@ $(document).ready(function(){
                 type: "post",
                 dataType: "json",
                 contentType : 'application/json',
-                url: "/add-new-topic",
+                url: "/topic",
                 data: JSON.stringify(newTopic),
                 success: function(){
                     console.log("success")
@@ -278,7 +278,7 @@ $(document).ready(function(){
             type: "get",
             dataType: "json",
             contentType : 'application/json',
-            url: "/search-topics/"+topicSearchInput,
+            url: "/topics/"+topicSearchInput,
             success: function(data){
                 //console.log(JSON.stringify(data));
                 $forumMainContainer.empty();
@@ -325,6 +325,9 @@ $(document).ready(function(){
             })
         })
     }
+
+
+
 
 
 
