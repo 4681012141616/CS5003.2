@@ -87,7 +87,7 @@ $(document).ready(function(){
         }
         $destinationInfo.children('h3, p').remove();
         for (var i in data.cities) {
-            $destinationInfo.prepend('<p>' + data.cities[i] + '</p>');
+            $destinationInfo.prepend('<p>' + initialUppercase(data.cities[i]) + '</p>');
         }
         $destinationInfo.prepend('<h3>' + data.fullName + '</h3>');
         //click on the city name
