@@ -7,11 +7,9 @@ var cradle = require('cradle');
 class DAO {
     constructor() {
         this.db = new (cradle.Connection)
-<<<<<<< HEAD
-        ('klovia.cs.st-andrews.ac.uk:20631',
-=======
+
         ('http://klovia.cs.st-andrews.ac.uk:20631',
->>>>>>> origin/master
+
             {
                 auth: {
                     username: "yz62",
