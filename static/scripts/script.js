@@ -53,7 +53,7 @@ $(document).ready(function(){
     }
 
 
-    $('#country-select > div img:not(#map)').click(function(){
+    $('#country-select > div img:not(#world-map)').click(function(){
         $searchResultContainer.hide();
 
         $.ajax({
@@ -108,7 +108,7 @@ $(document).ready(function(){
     /*---------------------show details--------------*/
     //initiate tabs widget from jqueryUI
     $('#tabs').tabs({
-        event: "mouseover"
+        event: "click"
     });
 
     //auto complete widget from jqueryUI
@@ -139,7 +139,8 @@ $(document).ready(function(){
 //render details of a place, including introduction, tourist attractions and some topics
     function renderDestinationInfo (destinationInputVal) {
         $destinationName.empty();
-        $introduction.empty();
+        // leave map alone, delete everything else in $introduction / #tabs-1
+        $('#tabs-1 p').remove();
         $tourist_attractions.empty();
         $forum.empty();
 
@@ -156,14 +157,15 @@ $(document).ready(function(){
 
                    console.log(JSON.stringify(data));
 
-                   var destination = data.place_name.toUpperCase()+" - "+data.country_name.toUpperCase();
+                   var destination = data.place_name.toUpperCase() + ' - ' + data.country_name.toUpperCase();
                    $destinationName.text(destination);
                    //TODO: load image
-                   var imgUrl = "/destination/img/" + data._id +".jpg";
+                   var imgUrl = '/destination/img/' + data._id + '.jpg';
 
-                   $introduction.text(data.introduction);
-
-                   $introduction.append("<img src="+imgUrl+">");
+                   $('#tabs-1 > div > img').attr('src',imgUrl);
+                   showOnMap(data.latitude, data.longitude);
+                   google.maps.event.trigger(map, 'resize');
+                   $introduction.append('<p>' + data.introduction + '</p>');
 
                    var tourist_attractions=data.tourist_attractions;
                    $.each(tourist_attractions, function(i,val){
@@ -325,9 +327,6 @@ $(document).ready(function(){
             })
         })
     }
-
-
-
 
 
 
