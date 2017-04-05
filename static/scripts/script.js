@@ -156,10 +156,10 @@ $(document).ready(function(){
 
                    console.log(JSON.stringify(data));
 
-                   var destination = data.place_name.toUpperCase()+" - "+data.country_name.toUpperCase();
+                   var destination = data.place_name.toUpperCase() + ' - ' + data.country_name.toUpperCase();
                    $destinationName.text(destination);
                    //TODO: load image
-                   var imgUrl = "/destination/img/" + data._id +".jpg";
+                   var imgUrl = '/destination/img/' + data._id.replace(' ','_') + '.jpg';
 
                    $introduction.text(data.introduction);
 
