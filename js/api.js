@@ -156,10 +156,24 @@ function configureApp(app) {
     });
 
 
-    app.put("/obj/:objid", function (req, res, next) {
+    app.put("/post/:objid", isLogin, function (req, res, next) {
 
         res.status(200).end("put obj");
     });
+
+    app.delete("/post/:objid", function(req, res, next){
+        var postId = req.params.objid;
+        mydb.deleteData(postId, function(err, result) {
+            if(err) {
+                res.status(500).send("delete not success");
+            } else {
+                res.status(200).send(req.session.user_id);
+            }
+        })
+    })
+
+
+
 
     app.get('/logout', function (req, res) {
         console.log("Log out:" + req.session.user_id);

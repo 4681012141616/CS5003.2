@@ -79,14 +79,25 @@ $('#tabs').tabs({
 
 //input search and click on the search btn and render details of destination
 $('#destinationSearchBtn').click(function () {
+    searchDestination();
+});
+
+$destinationInput.keydown(function(e) {
+    if(e.which === 13) {
+        searchDestination();
+    }
+});
+
+
+function searchDestination() {
     var destinationInputVal = $destinationInput.val().toLowerCase();
-  if(!check_searchInput(destinationInputVal)) {
-    alert("Invalid input");
-  } else {
-    renderDestinationInfo(destinationInputVal);
-    $searchResultContainer.show();
-  }
-})
+    if(!check_searchInput(destinationInputVal)) {
+        alert("Invalid input");
+    } else {
+        renderDestinationInfo(destinationInputVal);
+        $searchResultContainer.show();
+    }
+}
 
 
 function check_searchInput(input) {

@@ -9,12 +9,12 @@ class DAO {
     constructor() {
         this.db = new (cradle.Connection)
 
-        ('http://klovia.cs.st-andrews.ac.uk:20631',
+        ('localhost:20631',
 
             {
                 auth: {
                     username: "yz62",
-                    password: "Whfk9kWK"
+                    password: "j473M9sz"
                 }
             })
             .database("trippinpanda");
@@ -86,6 +86,14 @@ class DAO {
       }
       else
           throw new TypeError('Callback not a function');
+    }
+
+    deleteData(id, callback) {
+        if (typeof callback == 'function') {
+            this.db.remove(id, callback);
+        }
+        else
+            throw new TypeError('Callback not a function');
     }
 
 
