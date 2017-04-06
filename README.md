@@ -1,13 +1,21 @@
 # CS5003.2
-All client-side codes are in the static file
+TRIPPIN PANDA
 
 To run the app
 
-*check couchdb-status first
-pwd for log in the db can be found in dao.js
+1. Check Couchdb
+	"http://klovia.cs.st-andrews.ac.uk:20631"
+	DB name: trippinpanda;
+	username: yz62
+	password: Whfk9kWK
 
-*node main.js
-port is 50631
+2. npm install node modules
+	'express'
+	'express-session'
+	'cradle'
+	'body-parser'
+	'crypto-js'
+	'moment'
 
-*open browser 
-localhost:50631
+3. node main.js
+	go to the webpage: http://localhost:50631/
