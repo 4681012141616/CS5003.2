@@ -44,10 +44,10 @@ $("#login").click(function (e) {
             alert("Empty input");
     })
 
-            /* $('#loginCancel').click(function() {
+             $('.cancelBtn').click(function() {
                   $loginDialog.hide();
                   $mask.hide();
-              });*/
+              });
 });
 
 
@@ -92,10 +92,10 @@ $("#register").click(function () {
 
     })
 
-    /*$('#registerCancel').click((function() {
+    $('.cancelBtn').click(function() {
         $registerDialog.hide();
         $mask.hide();
-    });*/
+    });
 
 })
 
