@@ -162,8 +162,7 @@ function configureApp(app) {
 
     app.put("/post/:objid", isLogin, function(req, res, next) {
         let postId = req.params.objid;
-        let content = req.body.name;
-        //console.log(req.body);
+        let content = req.body.repliesArray;
         mydb.updateData(postId, content, function(err, result) {
             if (err) {
                 res.status(500).send({status: 500, message: 'internal error', type: 'internal'});

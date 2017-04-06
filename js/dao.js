@@ -98,7 +98,7 @@ class DAO {
 
     updateData(id, content, callback) {
         if (typeof callback == 'function') {
-            this.db.merge(id, {name: content}, callback);
+            this.db.merge(id, {replies: content}, callback);
         }
         else
             throw new TypeError('Callback not a function');
