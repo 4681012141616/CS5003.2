@@ -130,6 +130,10 @@ function configureApp(app) {
 
     app.post("/login", authenticate);
 
+    app.get("/checkLoginStatus", isLogin, function(req,res,next) {
+      res.status(200).send({Login: true});
+    })
+
     app.get("/user/:objid", isLogin, function (req, res, next) {
         let id = req.params.objid;
         mydb.fetchUserDetails(id, function (err, result) {
