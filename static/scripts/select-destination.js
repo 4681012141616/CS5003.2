@@ -22,7 +22,6 @@ function resized() {
 
 
 $('#country-select > div img:not(#world-map)').click(function(){
-    $searchResultContainer.hide();
 
     $.ajax({
         type: "GET",
