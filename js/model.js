@@ -7,7 +7,7 @@ var SHA256 = require('crypto-js/sha256');
 
 class Topic {
     constructor(topic, userId, content, destinationId, date, replies) {
-        this._id = topic.replace(/\s/g,"_");
+        this._id = topic.replace(/\s/g, "_");
         this._topic = topic;
         this._userId = userId;
         this._content = content;
@@ -27,7 +27,7 @@ class Topic {
 
 
 //TODO: add validation here!!
-        if(!userId) {
+        if (!userId) {
             return null;
         }
 
@@ -36,9 +36,9 @@ class Topic {
 
     toJSON() {
         return {
-            _id:this._id,
-            topic:this._topic,
-            userId:this._userId,
+            _id: this._id,
+            topic: this._topic,
+            userId: this._userId,
             content: this._content,
             destinationId: this._destinationId,
             date: this._date,
@@ -50,7 +50,7 @@ class Topic {
 
 class User {
     constructor(username, password, email, startDate) {
-        this._id = "user_"+ username;
+        this._id = "user_" + username;
         this.username = username;
         this.passwordHash = SHA256(password).toString(CryptoJS.enc.Base64);
         this.email = email;
@@ -62,7 +62,7 @@ class User {
 
     }
 
-    static fromJSON (json) {
+    static fromJSON(json) {
         var username = json.username;
         var password = json.password;
         var email = json.email;
@@ -79,7 +79,7 @@ var moduleExports = {
     User: User
 };
 
-if(typeof __dirname == 'undefined')
+if (typeof __dirname == 'undefined')
     window.hello = moduleExports;
 else
     module.exports = moduleExports;

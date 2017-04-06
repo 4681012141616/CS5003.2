@@ -65,7 +65,7 @@ class DAO {
     getTemporaryView(id, callback) {
         if (typeof callback == 'function') {
             this.db.temporaryView({
-                "map": "function (doc) {if (doc.type == 'topic' && doc.topic.match(/"+id+"/gi)) emit(doc.topic, doc);}"
+                "map": "function (doc) {if (doc.type == 'topic' && doc.topic.match(/" + id + "/gi)) emit(doc.topic, doc);}"
             }, callback);
         }
         else

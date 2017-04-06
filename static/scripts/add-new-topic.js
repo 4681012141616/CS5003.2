@@ -1,13 +1,13 @@
 /*---------add a new topic------------*/
 var $addNewTopicForm = $("#addNewTopicForm");
-$('#addTopicBtn').click(function(){
+$('#addTopicBtn').click(function () {
 
     $forumMainContainer.empty();
     $addNewTopicForm.show();
 
     //TODO:add client side validation here, to check all input fields
 
-    $("#submitNewTopicBtn").click(function(){
+    $("#submitNewTopicBtn").click(function () {
         var topic = $("#newTopic").val();
         var userId = $("#userId").val();
         var content = $("#newTopicContent").val();
@@ -21,19 +21,19 @@ $('#addTopicBtn').click(function(){
         $.ajax({
             type: "post",
             dataType: "json",
-            contentType : 'application/json',
+            contentType: 'application/json',
             url: "/topic",
             data: JSON.stringify(newTopic),
-            success: function(){
+            success: function () {
                 console.log("success")
 
                 $addNewTopicForm.hide();
 
-                $( "#dialog-message" ).dialog({
+                $("#dialog-message").dialog({
                     modal: true,
                     buttons: {
-                        Ok: function() {
-                            $( this ).dialog( "close" );
+                        Ok: function () {
+                            $(this).dialog("close");
                             $forumMainContainer.show();
                         }
                     }
@@ -41,7 +41,7 @@ $('#addTopicBtn').click(function(){
 
             },
             //TODO after submission go back page
-            error: function() {
+            error: function () {
                 console.log("fail")
             }
         });

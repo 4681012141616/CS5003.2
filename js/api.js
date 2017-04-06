@@ -119,14 +119,14 @@ function configureApp(app) {
     app.post("/login", authenticate);
 
     app.get("/user/:objid", isLogin, function (req, res, next) {
-      let id = req.params.objid;
-      mydb.fetchUserDetails(id, function (err, result) {
-        if (err) {
-            res.status(err.headers.status).end();
-        } else {
-            res.status(200).send(result[0]);
-        }
-      });
+        let id = req.params.objid;
+        mydb.fetchUserDetails(id, function (err, result) {
+            if (err) {
+                res.status(err.headers.status).end();
+            } else {
+                res.status(200).send(result[0]);
+            }
+        });
     });
 
     app.post("/topic", isLogin, function (req, res, next) {
@@ -149,10 +149,10 @@ function configureApp(app) {
         res.status(200).end("put obj");
     });
 
-    app.get('/logout', function(req, res) {
-      console.log("Log out:"+req.session.user_id);
-      res.redirect('back');
-      delete req.session.user_id;
+    app.get('/logout', function (req, res) {
+        console.log("Log out:" + req.session.user_id);
+        res.redirect('back');
+        delete req.session.user_id;
     })
 
     app.use('/', express.static('static'));
@@ -169,7 +169,7 @@ function authenticate(req, res, next) {
             if (SHA256(req.body.password).toString(CryptoJS.enc.Base64) != result[0].value.passwordHash) {
                 res.sendStatus(401);
             } else {
-                req.session.user_id = "user_"+result[0].key;
+                req.session.user_id = "user_" + result[0].key;
                 req.session.cookie.expires = new Date(Date.now() + 600000);
                 res.status(200).json(result[0].key);
             }
@@ -182,7 +182,7 @@ function isLogin(req, res, next) {
         res.status(401).end("You haven't logged in yet.");
     }
     else {
-      console.log("Log in: "+req.session.user_id);
+        console.log("Log in: " + req.session.user_id);
         next();
     }
 }
@@ -192,10 +192,9 @@ function isExist(req, res, next) {
         if (err) {
             res.sendStatus(500);
         } else {
-            if(result.length == 0) {
+            if (result.length == 0) {
                 next();
-            } else
-            {
+            } else {
                 res.status(400).send("Bad request, user already exists");
             }
 

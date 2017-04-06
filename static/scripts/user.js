@@ -3,10 +3,10 @@ var $registerDialog = $("#registerDialog");
 var $register_login = $('#register-login');
 
 $("#login").click(function (e) {
-      $("#loginDialog input").val('');
-      $registerDialog.hide();
-      showMask();
-      $loginDialog.show();
+    $("#loginDialog input").val('');
+    $registerDialog.hide();
+    showMask();
+    $loginDialog.show();
 
 
     $("#loginBtn").click(function () {
@@ -54,7 +54,6 @@ $("#register").click(function () {
     $registerDialog.show();
 
 
-
     $("#registerBtn").click(function () {
         var newusername = $('#newusername').val(),
             newemail = $("#newemail").val(),
@@ -64,7 +63,12 @@ $("#register").click(function () {
         } else {
 
             var startDate = moment().format('DD MMMM YYYY');
-            var newuser = {"username": newusername, "email": newemail, "newpassword": newpassword, "startDate": startDate};
+            var newuser = {
+                "username": newusername,
+                "email": newemail,
+                "newpassword": newpassword,
+                "startDate": startDate
+            };
             console.log(newuser);
             $.ajax
             ({
@@ -92,9 +96,9 @@ $("#register").click(function () {
 })
 
 
-$('.cancelBtn, .closeBtn').click(function() {
-  $(this).parent().parent().hide();
-  hideMask();
+$('.cancelBtn, .closeBtn').click(function () {
+    $(this).parent().parent().hide();
+    hideMask();
 });
 
 
