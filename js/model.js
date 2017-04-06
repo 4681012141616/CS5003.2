@@ -1,7 +1,8 @@
-"use strict"
 //store different classes
 
 var moment = require("moment");
+var CryptoJS = require('crypto-js');
+var SHA256 = require('crypto-js/sha256');
 //store different classes
 
 class Topic {
@@ -48,34 +49,30 @@ class Topic {
 }
 
 class User {
-    constructor(username, password, email ) {
+    constructor(username, password, email, startDate) {
         this._id = "user_"+ username;
         this.username = username;
-        this.password = password;
+        this.passwordHash = SHA256(password).toString(CryptoJS.enc.Base64);
         this.email = email;
         this.type = "user";
+        this.bio = "";
+        this.posts = [];
+        this.favouritePlaces = [];
+        this.startDate = startDate;
+
     }
 
     static fromJSON (json) {
         var username = json.username;
         var password = json.password;
         var email = json.email;
+        var startDate = json.startDate;
 
-        return new User(username, password, email);
+        return new User(username, password, email, startDate);
     }
-
-    toJSON() {
-        return {
-            _id: this._id,
-            username: this.username,
-            password: this.password,
-            type: this.type,
-            email: this.email
-        }
-    }
-
 
 }
+
 
 var moduleExports = {
     Topic: Topic,
@@ -86,4 +83,3 @@ if(typeof __dirname == 'undefined')
     window.hello = moduleExports;
 else
     module.exports = moduleExports;
-
