@@ -1,4 +1,4 @@
-$attractionContainer = $('#attractionMainContainer');
+var $attractionContainer = $('#attractionMainContainer');
 
 
 function resetAttractionListeners() {

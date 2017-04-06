@@ -1,78 +1,97 @@
-body {
-    background: none;
+#forumMainContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin: 15vh 10vw;
+  height: 70vh;
+  width: 80vw;
+  background: white;
+  border-radius: 7px;
+  border: 2px solid rgb(220,230,255);
+  overflow: scroll;
+  display: none;
 }
 
-section {
-    margin: 60px 0 0;
+#attractionMainContainer #close {
+  position: fixed;
+  top: 15.5vh;
+  right: 10vw;
+  height: 40px;
+}
+#attractionMainContainer #close:hover {
+  cursor: pointer;
 }
 
-h2 span {
-    margin-left: 16px;
-    font-size: 18px;
-    font-weight: normal;
+#forumMainContainer h2 {
+  margin-top: 0;
 }
 
-h3 span {
-    font-size: 90%;
-    font-weight: 100;
-    color: #777;
+#forumMainContainer h2 span {
+  margin-left: 16px;
+  font-size: 18px;
+  font-weight: normal;
 }
 
-section div {
-    margin-right: 2px;
-    padding: 5px;
-    margin-bottom: 2px;
+#forumMainContainer h3 span, #forumMainContainer h3 i {
+  font-size: 90%;
+  font-weight: 100;
+  color: #777;
+}
+
+#forumMainContainer div {
+  margin-right: 2px;
+  padding: 5px;
+  margin-bottom: 2px;
 }
 
 .nestedParity0 {
-    background: rgb(220, 230, 255);
+  background: rgb(220,230,255);
 }
 
 .nestedParity1 {
-    background: white;
+  background: white;
 }
 
-section > div {
-    margin-right: 2vh;
-    background: transparent;
+#forumMainContainer > div {
+  margin-right: 2vh;
+  background: transparent;
 }
 
 #forumMainContainer img {
-    height: 20px;
-    margin: 0 0 -4px 4px;
+  height: 20px;
+  margin: 0 0 -4px 4px;
 }
 
-p {
-    margin: 0 0 5px;
+#forumMainContainer p {
+  margin: 0 0 5px;
 }
 
-u {
-    color: #777;
-    font-size: 90%;
+#forumMainContainer u {
+  color: #777;
+  font-size: 90%;
+}
+#forumMainContainer u:hover {
+  cursor: pointer;
 }
 
-u:hover {
-    cursor: pointer;
+#forumMainContainer .replyBox {
+  padding: 0;
+  display: none;
 }
 
-.replyBox {
-    padding: 0;
-    display: none;
+#forumMainContainer .replyBox > div {
+  margin: 0;
+  height: 40px;
+  padding: 5px;
+  overflow: scroll;
+  border: 1px solid;
+  border-right: none;
+  background: white;
 }
 
-.replyBox > div {
-    margin: 0;
-    height: 40px;
-    padding: 5px;
-    overflow: scroll;
-    border: 1px solid;
-    border-right: none;
-    background: white;
-}
-
-.postBtn {
-    float: right;
-    height: 52px;
-    width: 60px;
-    border: 1px solid;
+#forumMainContainer .postBtn {
+  float: right;
+  height: 52px;
+  width: 60px;
+  border: 1px solid;
 }
