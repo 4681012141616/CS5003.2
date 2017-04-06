@@ -9,12 +9,12 @@ class DAO {
     constructor() {
         this.db = new (cradle.Connection)
 
-        ('localhost:20631',
+        ('http://klovia.cs.st-andrews.ac.uk:20631',
 
             {
                 auth: {
                     username: "yz62",
-                    password: "j473M9sz"
+                    password: "Whfk9kWK"
                 }
             })
             .database("trippinpanda");
