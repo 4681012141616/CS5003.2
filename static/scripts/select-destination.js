@@ -65,7 +65,7 @@ function displayInfo( data ) {
     //click on the city name
     $("#destination-info p").click(function () {
         $searchResultContainer.show();
-        var selectedDestination = $(this).text();
+        var selectedDestination = $(this).text().toLowerCase().replace(/\s/g,"_");
         renderDestinationInfo(selectedDestination);
     })
 }
