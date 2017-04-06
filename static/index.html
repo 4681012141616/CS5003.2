@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/forum.css">
     <link rel='stylesheet' href='css/profile.css'>
-
+    <link rel='stylesheet' href='css/login-register.css'>
 
 </head>
 
@@ -23,6 +23,10 @@
     <div id="register-login">
         <div id="register"><a href="#register">Register</a></div>
         <div id="login"><a href="#login">Login</a></div>
+    </div>
+    <div id="afterLogin">
+      <div id="viewProfile"><a href="#"></a></div>
+      <div><a href="/logout">Log out</a></div>
     </div>
 </div>
 
@@ -137,47 +141,45 @@
     </div>
 
     <div id="loginDialog" class="popupWindow">
-        <fieldset>
-            <legend>Login Form</legend>
+          <h4>Login Form <img src='./images/close.png' class='closeBtn'> </h4>
+          <div class="inputfield">
                 User Name:
                 <input type="text" name="username" id="username"><br>
                 Password:
                 <input type="password" name="password" id="password"><br>
                 <button id="loginBtn">Sign in</button>
                 <button class="cancelBtn">Cancel</button><br>
-            <p>* Not having an account? Why not <a href="#">sign up</a> now!</p>
-        </fieldset>
+        </div>
     </div>
 
 
     <div id="registerDialog" class="popupWindow">
-        <fieldset>
-            <legend>Register Form</legend>
-            User Name:
-            <input type="text" name="username" id="newusername" placeholder = "john"><br>
-            E-mail:
-            <input type="email" name="email" id="newemail" placeholder = "john@gmail.com"><br>
-            Password:
-            <input type="password" name="password" id="newpassword"><br>
-            <button id="registerBtn" type="submit">Register</button>
-            <button class="cancelBtn">Cancel</button>
+            <h4>Register Form <img src='./images/close.png' class="closeBtn"> </h4>
 
-        </fieldset>
+            <div class="inputfield">
+              User Name:<br>
+              <input type="text" name="username" id="newusername" placeholder = "john"><br>
+              E-mail:<br>
+              <input type="email" name="email" id="newemail" placeholder = "john@gmail.com"><br>
+              Password:<br>
+              <input type="password" name="password" id="newpassword"><br>
+              <button id="registerBtn" type="submit">Register</button>
+              <button class="cancelBtn">Cancel</button>
+          </div>
     </div>
 
-    
+
 
 
     <section id='profileMainContainer' class='popupWindow'>
     </section>
-    
+
     <div class="mask"></div>
 </main>
 </body>
 
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
 
 <script src="scripts/mask.js"></script>
 <script src="scripts/add-new-topic.js"></script>

@@ -2,11 +2,11 @@ var $loginDialog = $("#loginDialog");
 var $registerDialog = $("#registerDialog");
 var $register_login = $('#register-login');
 
-
 $("#login").click(function (e) {
-    $registerDialog.hide();
-    showMask();
-    $loginDialog.show();
+      $("#loginDialog input").val('');
+      $registerDialog.hide();
+      showMask();
+      $loginDialog.show();
 
 
     $("#loginBtn").click(function () {
@@ -26,8 +26,8 @@ $("#login").click(function (e) {
                 contentType: 'application/json',
                 data: JSON.stringify(user),
                 success: function (data) {
-                    alert("You have logged in!");
                     $loginDialog.hide();
+                    alert("You have logged in!");
                     $("#loginDialog input").val('');
                     $register_login.hide();
                     $('#afterLogin').show();
@@ -44,14 +44,11 @@ $("#login").click(function (e) {
             alert("Empty input");
     })
 
-             $('.cancelBtn').click(function() {
-                  $loginDialog.hide();
-                  hideMask();
-              });
 });
 
 
 $("#register").click(function () {
+    $("#registerDialog input").val('');
     $loginDialog.hide();
     showMask();
     $registerDialog.show();
@@ -92,12 +89,13 @@ $("#register").click(function () {
 
     })
 
-    $('.cancelBtn').click(function() {
-        $registerDialog.hide();
-        hideMask();
-    });
-
 })
+
+
+$('.cancelBtn, .closeBtn').click(function() {
+  $(this).parent().parent().hide();
+  hideMask();
+});
 
 
 function check_input(input) {
