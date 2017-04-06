@@ -1,11 +1,11 @@
 var $loginDialog = $("#loginDialog");
 var $registerDialog = $("#registerDialog");
 var $register_login = $('#register-login');
-var $mask = $(".mask");
+
 
 $("#login").click(function (e) {
     $registerDialog.hide();
-    $mask.show();
+    showMask();
     $loginDialog.show();
 
 
@@ -31,7 +31,7 @@ $("#login").click(function (e) {
                     $("#loginDialog input").val('');
                     $register_login.hide();
                     $('#afterLogin').show();
-                    $mask.hide();
+                    hideMask();
                     //console.log(data);
                     $('#viewProfile a').text(data);
                 },
@@ -46,14 +46,14 @@ $("#login").click(function (e) {
 
              $('.cancelBtn').click(function() {
                   $loginDialog.hide();
-                  $mask.hide();
+                  hideMask();
               });
 });
 
 
 $("#register").click(function () {
     $loginDialog.hide();
-    $mask.show();
+    showMask();
     $registerDialog.show();
 
 
@@ -80,7 +80,7 @@ $("#register").click(function () {
                     console.log("register success");
                     $("#registerDialog input").val('');
                     alert("You have registered successfully!");
-                    $mask.hide();
+                    hideMask();
 
                 },
                 error: function () {
@@ -94,7 +94,7 @@ $("#register").click(function () {
 
     $('.cancelBtn').click(function() {
         $registerDialog.hide();
-        $mask.hide();
+        hideMask();
     });
 
 })
