@@ -25,7 +25,6 @@ $(document).ready(function(){
         $forumPage.show();
     })
 
-
     /*---------add a new topic------------*/
     var $addNewTopicForm = $("#addNewTopicForm");
     $('#addTopicBtn').click(function(){

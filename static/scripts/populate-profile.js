@@ -1,5 +1,28 @@
 var locationId;
 
+$("#viewProfile a").click(function(){
+  var username = $(this).text();
+  console.log(username);
+  $.ajax({
+      type: "GET",
+      headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'text/plain',
+      },
+      dataType: "json",
+      url: "/user/"+ username,
+      success: function (data){
+        console.log(data);
+          populateProfile(data);
+      },
+      error: function () {
+          console.log("error");
+      }
+  });
+
+
+})
+
 
 
 function populateProfile( profile ) {
