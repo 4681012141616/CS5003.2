@@ -114,7 +114,7 @@ function configureApp(app) {
 
 
     app.post("/register", isExist, function (req, res, next) {
-        var newUser = model.User.fromJSON(req.body);
+        let newUser = model.User.fromJSON(req.body);
         //console.log(newUser);
         if (newUser) {
             mydb.insertData(newUser, function (err, result) {
@@ -143,7 +143,7 @@ function configureApp(app) {
 
     app.post("/topic", isLogin, function (req, res, next) {
         //console.log('topic login');
-        var newTopic = model.Topic.fromJSON(req.body);
+        let newTopic = model.Topic.fromJSON(req.body);
         if (newTopic) {
             mydb.insertData(newTopic, function (err, result) {
                 if (err) {
@@ -156,13 +156,21 @@ function configureApp(app) {
     });
 
 
-    app.put("/post/:objid", isLogin, function (req, res, next) {
-
-        res.status(200).end("put obj");
+    app.put("/post/:objid", isLogin, function(req, res, next) {
+        let postId = req.params.objid;
+        let content = req.body.name;
+        //console.log(req.body);
+        mydb.updateData(postId, content, function(err, result) {
+            if (err) {
+                res.status(500).send({status: 500, message: 'internal error', type: 'internal'});
+            } else {
+                res.status(200).end("update successfully");
+            }
+        })
     });
 
-    app.delete("/post/:objid", function(req, res, next){
-        var postId = req.params.objid;
+    app.delete("/post/:objid", isLogin, function(req, res, next){
+        let postId = req.params.objid;
         mydb.deleteData(postId, function(err, result) {
             if(err) {
                 res.status(500).send("delete not success");
