@@ -40,7 +40,7 @@ function populateProfile( profile ) {
   for (var i in profile.posts)
     $('#profileMainContainer').append("<div id='post" + i + "' class='post'><h4>" + forums[profile.posts[i].postId] + '</h4><p>' + profile.posts[i].postContent + '</p></div>');
 
-  $('#profileMainContainer').append("<img src='images/close.png'>");
+  $('#profileMainContainer').append("<img src='../images/close.png'>");
 
 
 
