@@ -16,8 +16,7 @@ $("#login").click(function (e) {
 
         if (check_input(username) && check_input(password)) {
             var user = {"username": username, "password": password};
-            console.log(user);
-
+          //  console.log(user);
             $.ajax
             ({
                 type: "POST",
@@ -37,6 +36,7 @@ $("#login").click(function (e) {
                 },
                 error: function () {
                     console.log("Failed to login");
+                    alert("Fail to log in, please check your password");
                 }
             });
         }

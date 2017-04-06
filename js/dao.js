@@ -80,6 +80,14 @@ class DAO {
             throw new TypeError('Callback not a function');
     }
 
+    fetchCities(callback) {
+      if (typeof callback == 'function') {
+          this.db.view("destination/byName", callback);
+      }
+      else
+          throw new TypeError('Callback not a function');
+    }
+
 
 }
 

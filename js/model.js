@@ -1,4 +1,6 @@
+"use strict"
 //store different classes
+
 
 var moment = require("moment");
 var CryptoJS = require('crypto-js');

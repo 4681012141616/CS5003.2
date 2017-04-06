@@ -76,26 +76,61 @@ $('#tabs').tabs({
     event: "click"
 });
 
-//auto complete widget from jqueryUI
-var availablePlaceTags = [
-    "London",
-    "Berlin",
-    "Belfast",
-    "Prague"
-];
-
-$destinationInput.autocomplete({
-    source: availablePlaceTags
-});
-
 
 //input search and click on the search btn and render details of destination
 $('#destinationSearchBtn').click(function () {
-  if(!check_input(topicSearchInput)) {
+    var destinationInputVal = $destinationInput.val().toLowerCase();
+  if(!check_searchInput(destinationInputVal)) {
     alert("Invalid input");
   } else {
-    var destinationInputVal = $destinationInput.val().toLowerCase();
     renderDestinationInfo(destinationInputVal);
     $searchResultContainer.show();
   }
 })
+
+
+function check_searchInput(input) {
+    if (input === "" || input == undefined || input.replace(/\s/g, "").length === 0 || input.match(/[^a-zA-Z]/)) {
+        return false;
+    }
+    return true;
+}
+
+
+//get all place names in database for the autocomplete use
+//auto complete widget from jqueryUI
+var availablePlaceTags = [];
+function loadPlaces() {
+  $.ajax({
+      type: "GET",
+      headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'text/plain',
+      },
+      dataType: "json",
+      url: "/cities",
+      success: function(data) {
+        $.each(data, function(i,val){
+          availablePlaceTags.push(val.value.place_name)
+        });
+        console.log(availablePlaceTags);
+      },
+      error: function () {
+          console.log("error");
+      }
+
+  })
+}
+
+loadPlaces();
+
+/*var availablePlaceTags = [
+    "London",
+    "Berlin",
+    "Belfast",
+    "Prague"
+];*/
+
+$destinationInput.autocomplete({
+    source: availablePlaceTags
+});

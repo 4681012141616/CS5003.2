@@ -1,5 +1,6 @@
 //the RESTful interface
 //need to access the model and dao
+"use strict"
 
 var express = require('express');
 var session = require('express-session');
@@ -35,6 +36,17 @@ function configureApp(app) {
     app.use(session({
         secret: "yz62"
     }));
+
+
+    app.get("/cities", function(req, res, next) {
+      mydb.fetchCities(function(err, result) {
+        if(err) {
+          res.status(err.headers.status).end();
+        } else {
+          res.status(200).send(result);
+        }
+      })
+    });
 
 
     app.get("/destination/:objid", function (req, res, next) {
@@ -167,6 +179,7 @@ function authenticate(req, res, next) {
             res.status(500).send({status: 500, message: 'internal error', type: 'internal'});
         } else {
             if (SHA256(req.body.password).toString(CryptoJS.enc.Base64) != result[0].value.passwordHash) {
+                console.log("Fail to log in");
                 res.sendStatus(401);
             } else {
                 req.session.user_id = "user_" + result[0].key;
