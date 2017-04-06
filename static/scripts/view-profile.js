@@ -26,7 +26,7 @@ $("#viewProfile a").click(function(){
 
 
 function populateProfile( profile ) {
-  $('#profileMainContainer').show();
+  showMask();
 
   $('#profileMainContainer').html('<h2>' + profile.username + '<span>Member since ' + profile.startDate + '</span></h2>');
   $('#profileMainContainer').append('<div>' + profile.bio + '</div>');
@@ -54,6 +54,7 @@ function populateProfile( profile ) {
 
   $('#profileMainContainer img').click(function(){
     $(this).parent().hide();
+    hideMask();
   });
 
 }

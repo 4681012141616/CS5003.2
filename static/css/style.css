@@ -387,6 +387,10 @@ button {
   top: 50%;
   left: 50%;
   margin-left: -200px;
+
+}
+
+.popupWindow {
   z-index: 200;
 
 }
