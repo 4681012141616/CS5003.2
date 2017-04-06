@@ -1,3 +1,4 @@
+"use strict"
 //store different classes
 
 var moment = require("moment");

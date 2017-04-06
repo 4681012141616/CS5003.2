@@ -1,3 +1,4 @@
+"use strict"
 //the RESTful interface
 //need to access the model and dao
 

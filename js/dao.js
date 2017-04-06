@@ -1,3 +1,4 @@
+"use strict"
 //data access object provides an interface for storage, use the interface to store and retrieve
 //insert into DB, fetch data, delete data
 
