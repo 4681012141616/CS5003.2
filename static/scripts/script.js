@@ -1,30 +1,6 @@
 
 $(document).ready(function(){
 
-    /*-------------------toggle between home page and forum page------------------*/
-
-    var $homePage = $("#homePage");
-    var $forumPage = $("#forumPage");
-
-  $('#menu li a').click(function() {
-        $('li a.active').removeClass('active');
-        var $this = $(this);
-        if (!$this.hasClass('active')) {
-            $this.addClass('active');
-        }
-    });
-
-    $("#homePageLink").click(function(){
-        $homePage.show();
-        $forumPage.hide();
-        //location.reload();
-    })
-
-    $("#forumPageLink").click(function(){
-        $homePage.hide();
-        $forumPage.show();
-    })
-
     /*---------add a new topic------------*/
     var $addNewTopicForm = $("#addNewTopicForm");
     $('#addTopicBtn').click(function(){
