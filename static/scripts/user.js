@@ -2,8 +2,8 @@ var $loginDialog = $("#loginDialog");
 var $registerDialog = $("#registerDialog");
 var $register_login = $('#register-login');
 
-
 $("#login").click(function (e) {
+    $("#loginDialog input").val('');
     $registerDialog.hide();
     showMask();
     $loginDialog.show();
@@ -26,8 +26,8 @@ $("#login").click(function (e) {
                 contentType: 'application/json',
                 data: JSON.stringify(user),
                 success: function (data) {
-                    alert("You have logged in!");
                     $loginDialog.hide();
+                    alert("You have logged in!");
                     $("#loginDialog input").val('');
                     $register_login.hide();
                     $('#afterLogin').show();
@@ -44,18 +44,14 @@ $("#login").click(function (e) {
             alert("Empty input");
     })
 
-             $('.cancelBtn').click(function() {
-                  $loginDialog.hide();
-                  hideMask();
-              });
 });
 
 
 $("#register").click(function () {
+    $("#registerDialog input").val('');
     $loginDialog.hide();
     showMask();
     $registerDialog.show();
-
 
 
     $("#registerBtn").click(function () {
@@ -67,7 +63,12 @@ $("#register").click(function () {
         } else {
 
             var startDate = moment().format('DD MMMM YYYY');
-            var newuser = {"username": newusername, "email": newemail, "newpassword": newpassword, "startDate": startDate};
+            var newuser = {
+                "username": newusername,
+                "email": newemail,
+                "newpassword": newpassword,
+                "startDate": startDate
+            };
             console.log(newuser);
             $.ajax
             ({
@@ -92,12 +93,13 @@ $("#register").click(function () {
 
     })
 
-    $('.cancelBtn').click(function() {
-        $registerDialog.hide();
-        hideMask();
-    });
-
 })
+
+
+$('.cancelBtn, .closeBtn').click(function () {
+    $(this).parent().parent().hide();
+    hideMask();
+});
 
 
 function check_input(input) {

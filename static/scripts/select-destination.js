@@ -21,7 +21,7 @@ function resized() {
 }
 
 
-$('#country-select > div img:not(#world-map)').click(function(){
+$('#country-select > div img:not(#world-map)').click(function () {
 
     $.ajax({
         type: "GET",
@@ -30,11 +30,10 @@ $('#country-select > div img:not(#world-map)').click(function(){
             'Content-Type': 'text/plain',
         },
         dataType: "json",
-        url: "/destination/"+ $(this).attr('id'),
-        success:
-            function (data){
-                displayInfo(data);
-            },
+        url: "/destination/" + $(this).attr('id'),
+        success: function (data) {
+            displayInfo(data);
+        },
         error: function () {
             console.log("Error. Information not found.");
         }
@@ -45,7 +44,7 @@ $('#country-select > div img:not(#world-map)').click(function(){
 });
 
 
-function displayInfo( data ) {
+function displayInfo(data) {
     if (!infoShown) {
         $destinationInfo.css({
             'color': '#1F1F60',
@@ -65,7 +64,7 @@ function displayInfo( data ) {
     //click on the city name
     $("#destination-info p").click(function () {
         $searchResultContainer.show();
-        var selectedDestination = $(this).text().toLowerCase().replace(/\s/g,"_");
+        var selectedDestination = $(this).text().toLowerCase().replace(/\s/g, "_");
         renderDestinationInfo(selectedDestination);
     })
 }
@@ -90,13 +89,13 @@ $destinationInput.autocomplete({
 });
 
 
-
 //input search and click on the search btn and render details of destination
-$('#destinationSearchBtn').click(function(){
-
-    //TODO: client side input validation check
-
+$('#destinationSearchBtn').click(function () {
+  if(!check_input(topicSearchInput)) {
+    alert("Invalid input");
+  } else {
     var destinationInputVal = $destinationInput.val().toLowerCase();
     renderDestinationInfo(destinationInputVal);
     $searchResultContainer.show();
+  }
 })

@@ -8,8 +8,9 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/forum.css">
     <link rel='stylesheet' href='css/profile.css'>
+    <link rel='stylesheet' href='css/login-register.css'>
     <link rel='stylesheet' href='css/attraction.css'>
-
+    <link rel='stylesheet' href='css/country-select.css'>
 
 </head>
 
@@ -24,6 +25,10 @@
     <div id="register-login">
         <div id="register"><a href="#register">Register</a></div>
         <div id="login"><a href="#login">Login</a></div>
+    </div>
+    <div id="afterLogin">
+        <div id="viewProfile"><a href="#"></a></div>
+        <div><a href="/logout">Log out</a></div>
     </div>
 </div>
 
@@ -96,10 +101,10 @@
                 <li><a href="#tabs-2">Discussion</a></li>
             </ul>
             <div id="tabs-1">
-              <div id="images">
-                <img>
-                <div id="map"></div>
-              </div>
+                <div id="images">
+                    <img>
+                    <div id="map"></div>
+                </div>
             </div>
             <div id="tabs-2">
             </div>
@@ -138,35 +143,33 @@
     </div>
 
     <div id="loginDialog" class="popupWindow">
-        <fieldset>
-            <legend>Login Form</legend>
-                User Name:
-                <input type="text" name="username" id="username"><br>
-                Password:
-                <input type="password" name="password" id="password"><br>
-                <button id="loginBtn">Sign in</button>
-                <button class="cancelBtn">Cancel</button><br>
-            <p>* Not having an account? Why not <a href="#">sign up</a> now!</p>
-        </fieldset>
+        <h4>Login Form <img src='./images/close.png' class='closeBtn'></h4>
+        <div class="inputfield">
+            User Name:
+            <input type="text" name="username" id="username"><br>
+            Password:
+            <input type="password" name="password" id="password"><br>
+            <button id="loginBtn">Sign in</button>
+            <button class="cancelBtn">Cancel</button>
+            <br>
+        </div>
     </div>
 
 
     <div id="registerDialog" class="popupWindow">
-        <fieldset>
-            <legend>Register Form</legend>
-            User Name:
-            <input type="text" name="username" id="newusername" placeholder = "john"><br>
-            E-mail:
-            <input type="email" name="email" id="newemail" placeholder = "john@gmail.com"><br>
-            Password:
+        <h4>Register Form <img src='./images/close.png' class="closeBtn"></h4>
+
+        <div class="inputfield">
+            User Name:<br>
+            <input type="text" name="username" id="newusername" placeholder="john"><br>
+            E-mail:<br>
+            <input type="email" name="email" id="newemail" placeholder="john@gmail.com"><br>
+            Password:<br>
             <input type="password" name="password" id="newpassword"><br>
             <button id="registerBtn" type="submit">Register</button>
             <button class="cancelBtn">Cancel</button>
-
-        </fieldset>
+        </div>
     </div>
-
-
 
 
     <section id='profileMainContainer' class='popupWindow'>
@@ -182,12 +185,10 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-
 <script src="scripts/mask.js"></script>
 <script src="scripts/add-new-topic.js"></script>
 <script src="scripts/search-topic.js"></script>
 <script src="scripts/select-destination.js"></script>
-<script src="scripts/convert.js"></script>
 <script src="scripts/user.js"></script>
 <script src="scripts/model.js"></script>
 <script src="scripts/moment.js"></script>
@@ -197,7 +198,9 @@
 <script src="scripts/view-attraction.js"></script>
 <script src="scripts/convert.js"></script>
 
+
 <script src='scripts/embed-map.js'></script>
-<script async defer src='https://maps.googleapis.com/maps/api/js?key=AIzaSyAVYAxhVHa9EwZt9HYkoYuhNqJ8Ij1AQHY&callback=initMap'></script>
+<script async defer
+        src='https://maps.googleapis.com/maps/api/js?key=AIzaSyAVYAxhVHa9EwZt9HYkoYuhNqJ8Ij1AQHY&callback=initMap'></script>
 
 </html>

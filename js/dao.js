@@ -46,9 +46,17 @@ class DAO {
             throw new TypeError('Callback not a function');
     }
 
-    fetchUser(id, callback) {
+    authenticateUser(id, callback) {
         if (typeof callback == 'function') {
-            this.db.view("user/byUsername", {key: id}, callback);
+            this.db.view("user/authenticateOnly", {key: id}, callback);
+        }
+        else
+            throw new TypeError('Callback not a function');
+    }
+
+    fetchUserDetails(id, callback) {
+        if (typeof callback == 'function') {
+            this.db.view("user/profile", {key: id}, callback);
         }
         else
             throw new TypeError('Callback not a function');
@@ -57,7 +65,7 @@ class DAO {
     getTemporaryView(id, callback) {
         if (typeof callback == 'function') {
             this.db.temporaryView({
-                "map": "function (doc) {if (doc.type == 'topic' && doc.topic.match(/"+id+"/gi)) emit(doc.topic, doc);}"
+                "map": "function (doc) {if (doc.type == 'topic' && doc.topic.match(/" + id + "/gi)) emit(doc.topic, doc);}"
             }, callback);
         }
         else

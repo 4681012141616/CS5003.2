@@ -22,9 +22,7 @@ module.exports = {
 function runApp() {
 
     thePort = 50631;
-
     var app = express();
-
     configureApp(app);
     console.log("Listening on port " + thePort);
     app.listen(thePort);
@@ -120,15 +118,15 @@ function configureApp(app) {
 
     app.post("/login", authenticate);
 
-    app.get("/user/:objid", function (req, res, next) {
-      let id = req.params.objid;
-      mydb.fetchUser(id, function (err, result) {
-        if (err) {
-            res.status(err.headers.status).end();
-        } else {
-            res.status(200).send(result);
-        }
-      });
+    app.get("/user/:objid", isLogin, function (req, res, next) {
+        let id = req.params.objid;
+        mydb.fetchUserDetails(id, function (err, result) {
+            if (err) {
+                res.status(err.headers.status).end();
+            } else {
+                res.status(200).send(result[0]);
+            }
+        });
     });
 
     app.post("/topic", isLogin, function (req, res, next) {
@@ -151,11 +149,10 @@ function configureApp(app) {
         res.status(200).end("put obj");
     });
 
-    app.get('/logout', function(req, res) {
-      //res.send('<h1>Logout:'+ req.session.user_id+'</h1> ');
-      console.log("Log out:"+req.session.user_id);
-      res.redirect('back');
-      delete req.session.user_id;
+    app.get('/logout', function (req, res) {
+        console.log("Log out:" + req.session.user_id);
+        res.redirect('back');
+        delete req.session.user_id;
     })
 
     app.use('/', express.static('static'));
@@ -164,7 +161,7 @@ function configureApp(app) {
 
 
 function authenticate(req, res, next) {
-    mydb.fetchUser(req.body.username, function (err, result) {
+    mydb.authenticateUser(req.body.username, function (err, result) {
         if (err) {
             console.log(err)
             res.status(500).send({status: 500, message: 'internal error', type: 'internal'});
@@ -172,9 +169,9 @@ function authenticate(req, res, next) {
             if (SHA256(req.body.password).toString(CryptoJS.enc.Base64) != result[0].value.passwordHash) {
                 res.sendStatus(401);
             } else {
-                req.session.user_id = result[0].value._id;
+                req.session.user_id = "user_" + result[0].key;
                 req.session.cookie.expires = new Date(Date.now() + 600000);
-                res.status(200).json(result[0].value.username);
+                res.status(200).json(result[0].key);
             }
         }
     })
@@ -185,19 +182,19 @@ function isLogin(req, res, next) {
         res.status(401).end("You haven't logged in yet.");
     }
     else {
+        console.log("Log in: " + req.session.user_id);
         next();
     }
 }
 
 function isExist(req, res, next) {
-    mydb.fetchUser(req.body.username, function (err, result) {
+    mydb.fetchUserDetails(req.body.username, function (err, result) {
         if (err) {
             res.sendStatus(500);
         } else {
-            if(result.length == 0) {
+            if (result.length == 0) {
                 next();
-            } else
-            {
+            } else {
                 res.status(400).send("Bad request, user already exists");
             }
 
