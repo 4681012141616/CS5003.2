@@ -46,7 +46,7 @@ function renderDestinationInfo (destinationInputVal) {
                     success:
                         function (attraction){
                           var imgUrl = '/destination/img/' + attraction._id + '.jpg';
-                          $visit.append("<div class='tourist-attraction'><img src='"+imgUrl+"' style='width:15vw;border-radius:5px;border:none'><p>"+val+"</p></div>")
+                          $visit.append("<div id='" + attraction._id + " 'class='tourist-attraction'><img src='"+imgUrl+"' style='width:15vw;border-radius:5px;border:none'><p>"+val+"</p></div>")
                         },
                     error: function (attraction) {
                           $visit.append("<div class='tourist-attraction'><p>"+val+"</p></div>")
@@ -77,6 +77,10 @@ function renderDestinationInfo (destinationInputVal) {
        }
 
    })
+
+   setTimeout(function(){
+     resetAttractionListeners();
+   }, 500);
 
 }
 

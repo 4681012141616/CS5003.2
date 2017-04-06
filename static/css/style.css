@@ -309,6 +309,10 @@ button {
   background: rgba(230,120,200,.5);
 }
 
+.tourist-attraction:hover {
+  cursor: pointer;
+}
+
 .tourist-attraction p {
   text-align: center;
   margin: 0;
