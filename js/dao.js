@@ -4,13 +4,10 @@
 
 var cradle = require('cradle');
 
-
 class DAO {
     constructor() {
         this.db = new (cradle.Connection)
-
         ('http://klovia.cs.st-andrews.ac.uk:20631',
-
             {
                 auth: {
                     username: "yz62",
@@ -96,13 +93,22 @@ class DAO {
             throw new TypeError('Callback not a function');
     }
 
-    updateData(id, content, callback) {
+    updatePost(id, content, callback) {
         if (typeof callback == 'function') {
             this.db.merge(id, {replies: content}, callback);
         }
         else
             throw new TypeError('Callback not a function');
     }
+  
+    updateUser(id, content, callback) {
+        if (typeof callback == 'function') {
+            this.db.merge(id, {bio: content.bio, favouritePlaces: content.favouritePlaces}, callback);
+        }
+        else
+            throw new TypeError('Callback not a function');
+    }
+
 
 
 }

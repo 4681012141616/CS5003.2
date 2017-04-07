@@ -135,13 +135,6 @@ function loadPlaces() {
 
 loadPlaces();
 
-/*var availablePlaceTags = [
-    "London",
-    "Berlin",
-    "Belfast",
-    "Prague"
-];*/
-
 $destinationInput.autocomplete({
     source: availablePlaceTags
 });

@@ -21,10 +21,10 @@ class Topic {
         var replies = json.replies;
 
 
-//TODO: add validation here!!
-        if (!userId) {
+        if (!userId || !topic || !content || !destinationId) {
             return null;
         }
+
 
         return new Topic(topic, userId, content, destinationId, date, replies);
     }
@@ -57,6 +57,10 @@ class User {
         var password = json.password;
         var email = json.email;
 
+        if(!username || !password) {
+          return null;
+        }
+
         return new User(username, password, email);
     }
 
@@ -82,4 +86,3 @@ if (typeof __dirname == 'undefined')
     window.hello = moduleExports;
 else
     module.exports = moduleExports;
-

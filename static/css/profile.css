@@ -12,14 +12,14 @@
     display: none;
 }
 
-#profileMainContainer img {
+#profileMainContainer .closeBtn {
     position: fixed;
     top: 15.5vh;
     right: 10vw;
     height: 40px;
 }
 
-#profileMainContainer img:hover {
+#profileMainContainer .closeBtn:hover {
     cursor: pointer;
 }
 
@@ -62,4 +62,23 @@ h4 {
     padding: 3px;
     background: rgb(220, 230, 255);
     border-radius: 4px 4px 0 0;
+}
+
+#btngroup {
+  display: none;
+}
+
+#profileMainContainer span img {
+  width: 20px;
+  float: right;
+}
+
+#profileMainContainer span img:hover {
+  cursor: pointer;
+}
+
+#profileMainContainer button {
+  margin-top: 2em;
+  margin-left: 4em;
+  width: 8em;
 }

@@ -27,9 +27,7 @@ class Topic {
         var date = json.date;
         var replies = json.replies;
 
-
-//TODO: add validation here!!
-        if (!userId) {
+        if (!userId || !topic || !content || !destinationId) {
             return null;
         }
 
@@ -61,7 +59,6 @@ class User {
         this.posts = [];
         this.favouritePlaces = [];
         this.startDate = startDate;
-
     }
 
     static fromJSON(json) {
@@ -70,6 +67,10 @@ class User {
         var email = json.email;
         var startDate = json.startDate;
 
+        if(!username || !password) {
+          return null;
+        }
+        
         return new User(username, password, email, startDate);
     }
 

@@ -10,9 +10,7 @@ var model = require('./model');
 var CryptoJS = require('crypto-js');
 var SHA256 = require('crypto-js/sha256');
 
-
 var mydb = new dao.DAO();
-
 
 var thePort;
 module.exports = {
@@ -21,7 +19,6 @@ module.exports = {
 };
 
 function runApp() {
-
     thePort = 50631;
     var app = express();
     configureApp(app);
@@ -31,13 +28,12 @@ function runApp() {
 
 
 function configureApp(app) {
-
     app.use(bodyParser.json());
     app.use(session({
         secret: "yz62"
     }));
 
-
+    //fetch city names that exist in the db, result for autocomplete use
     app.get("/cities", function(req, res, next) {
       mydb.fetchCities(function(err, result) {
         if(err) {
@@ -48,7 +44,7 @@ function configureApp(app) {
       })
     });
 
-
+    //fetch destination information by id
     app.get("/destination/:objid", function (req, res, next) {
         let id = req.params.objid;
         mydb.fetchDetails(id, function (err, result) {
@@ -60,12 +56,11 @@ function configureApp(app) {
         });
     });
 
+    //fetch attachment images
     app.get("/destination/img/:objid", function (req, res, next) {
         let id = req.params.objid.replace(".jpg", "");
         let filename = req.params.objid;
-
         res.setHeader("Content-Type", "image/jpeg");
-
         mydb.fetchImage(id, filename, function (err, result) {
             if (err) {
                 console.dir(err)
@@ -77,6 +72,7 @@ function configureApp(app) {
         })
     });
 
+    //fetch destination related topics by id
     app.get("/destination/topics/:objid", function (req, res, next) {
         let id = req.params.objid;
         mydb.fetchDestinationTopics(id, function (err, result) {
@@ -88,7 +84,7 @@ function configureApp(app) {
         })
     });
 
-    //search a topic
+    //fetch a list of topics by search input, a temporary view is created each time
     app.get("/topics/:objid", function (req, res, next) {
         let id = req.params.objid;
         mydb.getTemporaryView(id, function (err, result) {
@@ -101,6 +97,7 @@ function configureApp(app) {
 
     });
 
+    //fetch a topic's detail by topic id
     app.get("/topic/:objid", function (req, res, next) {
         let id = req.params.objid;
         mydb.fetchDetails(id, function (err, result) {
@@ -113,6 +110,7 @@ function configureApp(app) {
     });
 
 
+    //user register, check if has existed in the db
     app.post("/register", isExist, function (req, res, next) {
         let newUser = model.User.fromJSON(req.body);
         if (newUser) {
@@ -126,13 +124,15 @@ function configureApp(app) {
         }
     })
 
-
+    //user login request
     app.post("/login", authenticate);
 
+    //send back login status to front end
     app.get("/checkLoginStatus", isLogin, function(req,res,next) {
       res.status(200).send({Login: true});
     })
 
+    //fetch user details by id
     app.get("/user/:objid", isLogin, function (req, res, next) {
         let id = req.params.objid;
         mydb.fetchUserDetails(id, function (err, result) {
@@ -144,6 +144,7 @@ function configureApp(app) {
         });
     });
 
+    //post topic request, check if log in first
     app.post("/topic", isLogin, function (req, res, next) {
         let newTopic = req.body;
         console.log(1, newTopic)
@@ -158,7 +159,7 @@ function configureApp(app) {
         }
     });
 
-
+    //update post request
     app.put("/post/:objid", isLogin, function(req, res, next) {
         let postId = req.params.objid;
         let content = req.body.repliesArray;
@@ -171,6 +172,19 @@ function configureApp(app) {
         })
     });
 
+    //update user profile request
+    app.put("/user/:objid", isLogin, function(req, res, next) {
+      let userId = "user_"+req.params.objid;
+      mydb.updateUser(userId, req.body, function(err, result) {
+        if (err) {
+            res.status(500).send({status: 500, message: 'internal error', type: 'internal'});
+        } else {
+            res.status(200).end("update successfully");
+        }
+      })
+    });
+
+    //delete post request
     app.delete("/post/:objid", isLogin, function(req, res, next){
         let postId = req.params.objid;
         mydb.deleteData(postId, function(err, result) {
@@ -182,9 +196,7 @@ function configureApp(app) {
         })
     })
 
-
-
-
+    //logout request
     app.get('/logout', function (req, res) {
         console.log("Log out:" + req.session.user_id);
         res.redirect('back');
