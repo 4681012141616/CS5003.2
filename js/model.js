@@ -1,11 +1,8 @@
 "use strict"
-//store different classes
-
 
 var moment = require("moment");
 var CryptoJS = require('crypto-js');
 var SHA256 = require('crypto-js/sha256');
-//store different classes
 
 class Topic {
     constructor(topic, userId, content, destinationId, date, replies) {
@@ -26,11 +23,10 @@ class Topic {
         var destinationId = json.destinationId;
         var date = json.date;
         var replies = json.replies;
-
+        //double check
         if (!userId || !topic || !content || !destinationId) {
             return null;
         }
-
         return new Topic(topic, userId, content, destinationId, date, replies);
     }
 
@@ -48,10 +44,12 @@ class Topic {
     }
 }
 
+
 class User {
     constructor(username, password, email, startDate) {
         this._id = "user_" + username;
         this.username = username;
+        //password is hashed
         this.passwordHash = SHA256(password).toString(CryptoJS.enc.Base64);
         this.email = email;
         this.type = "user";
@@ -70,10 +68,8 @@ class User {
         if(!username || !password) {
           return null;
         }
-        
         return new User(username, password, email, startDate);
     }
-
 }
 
 

@@ -129,7 +129,7 @@ function configureApp(app) {
 
     //send back login status to front end
     app.get("/checkLoginStatus", isLogin, function(req,res,next) {
-      res.status(200).send({Login: true});
+      res.status(200).send({user_id: req.session.user_id, Login: true});
     })
 
     //fetch user details by id
@@ -163,7 +163,7 @@ function configureApp(app) {
     app.put("/post/:objid", isLogin, function(req, res, next) {
         let postId = req.params.objid;
         let content = req.body.repliesArray;
-        mydb.updateData(postId, content, function(err, result) {
+        mydb.updatePost(postId, content, function(err, result) {
             if (err) {
                 res.status(500).send({status: 500, message: 'internal error', type: 'internal'});
             } else {
@@ -199,8 +199,8 @@ function configureApp(app) {
     //logout request
     app.get('/logout', function (req, res) {
         console.log("Log out:" + req.session.user_id);
-        res.redirect('back');
         delete req.session.user_id;
+        res.redirect('back');
     })
 
     app.use('/', express.static('static'));
@@ -208,6 +208,7 @@ function configureApp(app) {
 }
 
 
+//User authenticate function, by comparing the hash of user input and passwordhash in the database
 function authenticate(req, res, next) {
     mydb.authenticateUser(req.body.username, function (err, result) {
         if (err) {
@@ -226,6 +227,7 @@ function authenticate(req, res, next) {
     })
 }
 
+//Function to check the login status of the user by checking if the requst has the session id
 function isLogin(req, res, next) {
     if (!req.session.user_id) {
         res.status(401).end("You haven't logged in yet.");
@@ -236,6 +238,7 @@ function isLogin(req, res, next) {
     }
 }
 
+//Funtion to check the existence of the user
 function isExist(req, res, next) {
     mydb.fetchUserDetails(req.body.username, function (err, result) {
         if (err) {
@@ -248,6 +251,5 @@ function isExist(req, res, next) {
             }
 
         }
-
     })
 }
