@@ -1,4 +1,4 @@
-/*---------add a new topic------------*/
+//Add a new topic to a location
 function addNewTopic() {
 
     var topicId = $newTopicId.html();
@@ -12,10 +12,15 @@ function addNewTopic() {
       "replyContent": content,
       "commentId": 0
     }];
+    var userPost = {
+      "postId": destinationId,
+      "postContent": content
+    }
 
+    //a post request to add a new topic to database
     $.ajax({
         type: "post",
-        dataType: "json",
+        dataType: "text",
         contentType: 'application/json',
         url: "/topic",
         data: JSON.stringify({
@@ -29,17 +34,14 @@ function addNewTopic() {
           "replies": replies
         }),
         success: function () {
-
-            $addNewTopicForm.hide();
-            $addNewTopicBtn.show();
-
+          $addNewTopicForm.hide();
+          $addNewTopicBtn.show();
+          userNewPost(userPost);
         },
         error: function () {
-            console.log("fail")
+          console.log("fail")
         }
     });
-
     $newTopicContent.html("");
     $newTopicId.html("");
-
 }

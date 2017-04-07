@@ -1,5 +1,4 @@
 //store different classes
-
 class Topic {
     constructor(topic, userId, content, destinationId, date, replies) {
         this._id = topic.replace(/\s/g, "_");
@@ -20,12 +19,9 @@ class Topic {
         var date = json.date;
         var replies = json.replies;
 
-
         if (!userId || !topic || !content || !destinationId) {
             return null;
         }
-
-
         return new Topic(topic, userId, content, destinationId, date, replies);
     }
 
@@ -60,7 +56,6 @@ class User {
         if(!username || !password) {
           return null;
         }
-
         return new User(username, password, email);
     }
 
@@ -73,8 +68,6 @@ class User {
             email: this.email
         }
     }
-
-
 }
 
 var moduleExports = {

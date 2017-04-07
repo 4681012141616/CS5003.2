@@ -1,3 +1,4 @@
+//convert the format of a string with the initial letter uppercase
 function initialUppercase(string) {
     var array = string.split("_");
     var newArray = [];

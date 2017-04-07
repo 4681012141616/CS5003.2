@@ -1,3 +1,4 @@
+//Mask show when a popupWindow appears, hide when the popupWindow is closed
 var $mask = $(".mask");
 
 function showMask() {

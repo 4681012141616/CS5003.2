@@ -1,183 +1,154 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Trippin' Panda</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/forum.css">
-    <link rel='stylesheet' href='css/profile.css'>
-    <link rel='stylesheet' href='css/login-register.css'>
-    <link rel='stylesheet' href='css/attraction.css'>
-    <link rel='stylesheet' href='css/country-select.css'>
-    <link rel='stylesheet' href='css/topics.css'>
+  <head>
+      <meta charset="UTF-8">
+      <title>Trippin' Panda</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+      <link rel="stylesheet" href="css/style.css">
+      <link rel="stylesheet" href="css/forum.css">
+      <link rel='stylesheet' href='css/profile.css'>
+      <link rel='stylesheet' href='css/login-register.css'>
+      <link rel='stylesheet' href='css/attraction.css'>
+      <link rel='stylesheet' href='css/country-select.css'>
+      <link rel='stylesheet' href='css/topics.css'>
+      <link rel='stylesheet' href='css/destination.css'>
+  </head>
 
-</head>
-
-<body>
-<header>
-    <h1>Tri<span>pp</span>in</h1><img src='images/panda.png'>
-    <h1>Panda</h1>
-</header>
+  <body>
+    <header>
+      <h1>Tri<span>pp</span>in</h1><img src='images/panda.png'>
+      <h1>Panda</h1>
+    </header>
 
 
-<div id="menu">
-    <div id="register-login">
+    <div id="menu">
+      <div id="register-login">
         <div id="register"><a href="#register">Register</a></div>
         <div id="login"><a href="#login">Login</a></div>
-    </div>
-    <div id="afterLogin">
+      </div>
+      <div id="afterLogin">
         <div id="viewProfile"><a href="#"></a></div>
         <div><a href="/logout">Log out</a></div>
+      </div>
     </div>
-</div>
 
-
-<!--<div id="loginDialog" title="Login">
-
-    <div>
-        <fieldset>
-            <label for="userId">User name</label>
-            <input type="text" name="userId" id="userId" class="text ui-widget-content ui-corner-all">
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password" class="text ui-widget-content ui-corner-all">
-
-            <!-- Allow form submission with keyboard without duplicating the dialog button
-            <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
-        </fieldset>
-    </div>
-</div>
--->
-
-<main id="homePage">
-
-    <section id='country-select'>
-
+    <main id="homePage">
+      <section id='country-select'>
         <h2>
-            <div class="searchbar ui-widget">
-                <input type="text" class="searchInput" id="destinationInput" placeholder="Search for destinations...">
-                <button id="destinationSearchBtn">Search</button>
-            </div>
+          <div class="searchbar ui-widget">
+            <input type="text" class="searchInput" id="destinationInput" placeholder="Search for destinations...">
+            <button id="destinationSearchBtn">Search</button>
+          </div>
         </h2>
 
         <div> <!-- this div holds the map & highlighted area outlines -->
-            <img id='eu-east' src='images/highlight/eastern-europe.png'>
-            <img id='nordics' src='images/highlight/nordics.png'>
-            <img id='s-e-asia' src='images/highlight/south-east-asia.png'>
-            <img id='china' src='images/highlight/china.png'>
-            <img id='africa' src='images/highlight/africa.png'>
-            <img id='middle-e' src='images/highlight/middle-east.png'>
-            <img id='aus-nz' src='images/highlight/australia-nz-pacific.png'>
-            <img id='balkans' src='images/highlight/balkans.png'>
-            <img id='eu-central' src='images/highlight/central-europe.png'>
-            <img id='france' src='images/highlight/france.png'>
-            <img id='italy' src='images/highlight/italy.png'>
-            <img id='japan' src='images/highlight/japan.png'>
-            <img id='s-asia' src='images/highlight/south-asia.png'>
-            <img id='s-america' src='images/highlight/south-central-america.png'>
-            <img id='spain-pt' src='images/highlight/spain.png'>
-            <img id='uk-ire' src='images/highlight/uk-ireland.png'>
-            <img id='us-canada' src='images/highlight/usa-canada.png'>
-            <img id='world-map' src='images/map.png'>
+              <img id='eu-east' src='images/highlight/eastern-europe.png'>
+              <img id='nordics' src='images/highlight/nordics.png'>
+              <img id='s-e-asia' src='images/highlight/south-east-asia.png'>
+              <img id='china' src='images/highlight/china.png'>
+              <img id='africa' src='images/highlight/africa.png'>
+              <img id='middle-e' src='images/highlight/middle-east.png'>
+              <img id='aus-nz' src='images/highlight/australia-nz-pacific.png'>
+              <img id='balkans' src='images/highlight/balkans.png'>
+              <img id='eu-central' src='images/highlight/central-europe.png'>
+              <img id='france' src='images/highlight/france.png'>
+              <img id='italy' src='images/highlight/italy.png'>
+              <img id='japan' src='images/highlight/japan.png'>
+              <img id='s-asia' src='images/highlight/south-asia.png'>
+              <img id='s-america' src='images/highlight/south-central-america.png'>
+              <img id='spain-pt' src='images/highlight/spain.png'>
+              <img id='uk-ire' src='images/highlight/uk-ireland.png'>
+              <img id='us-canada' src='images/highlight/usa-canada.png'>
+              <img id='world-map' src='images/map.png'>
         </div>
 
         <div id='destination-info'>
-            <span>Select a destination on the map</span>
-            <div>Choose a Destination from the List</div>
+          <span>Select a destination on the map</span>
+          <div>Choose a Destination from the List</div>
         </div>
+      </section>
 
-        <!--<section id='destination'>
-          <div id='map'></div>
-        </section>-->
-
-    </section>
-
-
-    <div id="search-result">
+      <div id="search-result">
         <h3 id="destinationName"></h3>
         <div id="tabs">
-            <ul>
-                <li><a href="#tabs-1">Visit</a></li>
-                <li><a href="#tabs-2">Discussion</a></li>
-            </ul>
-            <div id="tabs-1">
-                <div id="images">
-                    <img>
-                    <div id="map"></div>
-                </div>
+          <ul>
+            <li><a href="#tabs-1">Visit</a></li>
+            <li><a href="#tabs-2">Discussion</a></li>
+          </ul>
+          <div id="tabs-1">
+            <div id="images">
+              <img>
+              <div id="map"></div>
             </div>
-            <div id="tabs-2">
-            </div>
-
+          </div>
+          <div id="tabs-2">
+          </div>
         </div>
-    </div>
+      </div>
 
 
-    <div id="loginDialog" class="popupWindow">
+      <div id="loginDialog" class="popupWindow">
         <h4>Login Form <img src='./images/close.png' class='closeBtn'></h4>
         <div class="inputfield">
-            User Name:
-            <input type="text" name="username" id="username"><br>
-            Password:
-            <input type="password" name="password" id="password"><br>
-            <button id="loginBtn">Sign in</button>
-            <button class="cancelBtn">Cancel</button>
-            <br>
+          User Name:
+          <input type="text" name="username" id="username"><br>
+          Password:
+          <input type="password" name="password" id="password"><br>
+          <button id="loginBtn">Sign in</button>
+          <button class="cancelBtn">Cancel</button><br>
         </div>
-    </div>
+      </div>
 
 
-    <div id="registerDialog" class="popupWindow">
+      <div id="registerDialog" class="popupWindow">
         <h4>Register Form <img src='./images/close.png' class="closeBtn"></h4>
-
         <div class="inputfield">
-            User Name:<br>
-            <input type="text" name="username" id="newusername" placeholder="john"><br>
-            E-mail:<br>
-            <input type="email" name="email" id="newemail" placeholder="john@gmail.com"><br>
-            Password:<br>
-            <input type="password" name="password" id="newpassword"><br>
-            <button id="registerBtn" type="submit">Register</button>
-            <button class="cancelBtn">Cancel</button>
+          User Name:<br>
+          <input type="text" name="username" id="newusername" placeholder="john"><br>
+          E-mail:<br>
+          <input type="email" name="email" id="newemail" placeholder="john@gmail.com"><br>
+          Password:<br>
+          <input type="password" name="password" id="newpassword"><br>
+          <button id="registerBtn" type="submit">Register</button>
+          <button class="cancelBtn">Cancel</button>
         </div>
-    </div>
+      </div>
+
+      <section id='profileMainContainer' class='popupWindow'>
+      </section>
+
+      <section id='attractionMainContainer' class='popupWindow'>
+      </section>
+
+      <section id='forumMainContainer' class='popupWindow'>
+      </section>
+
+      <div class="mask"></div>
+
+    </main>
+  </body>
 
 
-    <section id='profileMainContainer' class='popupWindow'>
-    </section>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-    <section id='attractionMainContainer' class='popupWindow'>
-    </section>
-
-    <section id='forumMainContainer' class='popupWindow'>
-    </section>
-
-
-
-    <div class="mask"></div>
-</main>
-</body>
-
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-<script src="scripts/mask.js"></script>
-<script src="scripts/add-new-topic.js"></script>
-<script src="scripts/select-destination.js"></script>
-<script src="scripts/user.js"></script>
-<script src="scripts/model.js"></script>
-<script src="scripts/moment.js"></script>
-<script src="scripts/view-forum.js"></script>
-<script src='scripts/view-profile.js'></script>
-<script src="scripts/view-destination.js"></script>
-<script src="scripts/view-attraction.js"></script>
-<script src="scripts/convert.js"></script>
-<script src="scripts/view-topics.js"></script>
-
-
-<script src='scripts/embed-map.js'></script>
-<script async defer
-        src='https://maps.googleapis.com/maps/api/js?key=AIzaSyAVYAxhVHa9EwZt9HYkoYuhNqJ8Ij1AQHY&callback=initMap'></script>
+  <script src="scripts/mask.js"></script>
+  <script src="scripts/add-new-topic.js"></script>
+  <script src="scripts/select-destination.js"></script>
+  <script src="scripts/user.js"></script>
+  <script src="scripts/model.js"></script>
+  <script src="scripts/moment.js"></script>
+  <script src="scripts/view-forum.js"></script>
+  <script src='scripts/view-profile.js'></script>
+  <script src="scripts/view-destination.js"></script>
+  <script src="scripts/view-attraction.js"></script>
+  <script src="scripts/convert.js"></script>
+  <script src="scripts/view-topics.js"></script>
+  <script src="scripts/add-new-review.js"></script>
+  <script src="scripts/user-new-post.js"></script>
+  <script src='scripts/embed-map.js'></script>
+  <script async defer
+          src='https://maps.googleapis.com/maps/api/js?key=AIzaSyAVYAxhVHa9EwZt9HYkoYuhNqJ8Ij1AQHY&callback=initMap'></script>
 
 </html>

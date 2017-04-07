@@ -1,0 +1,104 @@
+#search-result {
+  position: relative;
+  margin: 10px 2vw 0;
+  padding: 20px;
+  overflow: hidden;
+  display: none;
+}
+
+#map {
+  height: 400px;
+  width: 100%;
+  margin-top: 10px;
+  padding: 0;
+  border: 3px solid rgb(210, 230, 250);
+}
+
+#tabs {
+  border-style: none;
+}
+
+#tabs ul {
+  background-color: white;
+  border-style: none;
+  border-bottom: solid lightgray thin;
+}
+
+#tabs li {
+  border-style: none;
+}
+
+#tabs li a {
+  padding: 0.5em 4em;
+}
+
+#tabs li a.hover {
+  color: white;
+  background-color: #1EAEDB;
+}
+
+#tabs-1 > div:not(.tourist-attraction) {
+  float: right;
+  width: 30vw;
+  margin-left: 30px;
+}
+
+#tabs-1 > div > img {
+  width: 30vw;
+  border: 3px solid rgb(210, 230, 250);
+}
+
+#tabs h4 {
+  font-size: 120%;
+  padding: 7px;
+  margin-bottom: 15px;
+}
+
+.tourist-attraction {
+  float: left;
+  margin-left: 30px;
+  width: 15vw;
+  border: 3px solid rgba(230, 120, 200, .3);
+  border-radius: 5px;
+  background: rgba(230, 120, 200, .5);
+  margin-bottom: 20px;
+}
+
+.tourist-attraction:hover {
+cursor: pointer;
+}
+
+.tourist-attraction p {
+  text-align: center;
+  margin: 0;
+  padding: 5px;
+  font-size: 120%;
+}
+
+#search-result h3 {
+  font-size: 20px;
+  margin: 1em 1em 1em 1em;
+}
+
+.forumList {
+  margin-top: 0.5em;
+}
+
+#forumPage {
+  display: none;
+}
+
+#addNewTopicForm {
+  display: none;
+}
+
+.favicon {
+  width: 20px;
+  height: 20px;
+  margin-left: 20px;
+  margin-bottom: -2px;
+}
+
+.favicon:hover {
+  cursor: pointer;
+}
