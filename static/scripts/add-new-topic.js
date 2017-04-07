@@ -1,50 +1,45 @@
 /*---------add a new topic------------*/
-var $addNewTopicForm = $("#addNewTopicForm");
-$('#addTopicBtn').click(function () {
+function addNewTopic() {
 
-    $forumMainContainer.empty();
-    $addNewTopicForm.show();
+    var topicId = $newTopicId.html();
+    var userId = $("#viewProfile a").html();
+    var content = $newTopicContent.html();
+    var date = moment().format('DD MMMM YYYY, HH:mm');
+    var replies = [{
+      "userId": userId,
+      "children": [],
+      "points": 0,
+      "replyContent": content,
+      "commentId": 0
+    }];
 
-    //TODO:add client side validation here, to check all input fields
+    $.ajax({
+        type: "post",
+        dataType: "json",
+        contentType: 'application/json',
+        url: "/topic",
+        data: JSON.stringify({
+          "_id": topicId.toLowerCase().replace(/\s/g,"_"),
+          "topic": topicId,
+          "userId": userId,
+          "content": content,
+          "destinationId": destinationId,
+          "date": date,
+          "type": "topic",
+          "replies": replies
+        }),
+        success: function () {
 
-    $("#submitNewTopicBtn").click(function () {
-        var topic = $("#newTopic").val();
-        var userId = $("#userId").val();
-        var content = $("#newTopicContent").val();
-        var destinationId = $("#topicDestinationSelect").val();
-        var date = moment().format('DD MMMM YYYY, HH:mm');
-        var replies = [];
+            $addNewTopicForm.hide();
+            $addNewTopicBtn.show();
 
-        var newTopic = new window.hello.Topic(topic, userId, content, destinationId, date, replies).toJSON();
-        console.log(newTopic);
+        },
+        error: function () {
+            console.log("fail")
+        }
+    });
 
-        $.ajax({
-            type: "post",
-            dataType: "json",
-            contentType: 'application/json',
-            url: "/topic",
-            data: JSON.stringify(newTopic),
-            success: function () {
-                console.log("success")
+    $newTopicContent.html("");
+    $newTopicId.html("");
 
-                $addNewTopicForm.hide();
-
-                $("#dialog-message").dialog({
-                    modal: true,
-                    buttons: {
-                        Ok: function () {
-                            $(this).dialog("close");
-                            $forumMainContainer.show();
-                        }
-                    }
-                });
-
-            },
-            //TODO after submission go back page
-            error: function () {
-                console.log("fail")
-            }
-        });
-
-    })
-})
+}

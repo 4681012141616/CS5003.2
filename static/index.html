@@ -114,35 +114,6 @@
     </div>
 
 
-    <div id="forumPage">
-        <div class="searchbar">
-            <input type="text" class="searchInput" id="topicSearchInput" placeholder="Search for topics...">
-            <button id="topicSearchBtn">Search</button>
-            <button id="addTopicBtn">Add a Topic</button>
-        </div>
-        <section id="forumMainContainer">
-        </section>
-        <div id="addNewTopicForm">
-            Topic: <input type="text" id="newTopic"><br>
-            UserId: <input type="text" id="userId"><br>
-            Content: <br><textarea rows="15" cols="100" id="newTopicContent"></textarea><br>
-            Select a destination forum:
-            <select id="topicDestinationSelect">
-                <option value="london">London</option>
-                <option value="belfast">Belfast</option>
-                <option value="berlin">Berlin</option>
-            </select>
-            <br>
-            <button id="submitNewTopicBtn">Submit</button>
-        </div>
-        <div id="dialog-message" title="New Topic Added">
-            <p>
-                <span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span>
-                Great! Your topic has been added successfully!
-            </p>
-        </div>
-    </div>
-
     <div id="loginDialog" class="popupWindow">
         <h4>Login Form <img src='./images/close.png' class='closeBtn'></h4>
         <div class="inputfield">
@@ -181,8 +152,8 @@
 
     <section id='forumMainContainer' class='popupWindow'>
     </section>
-  
-  
+
+
 
     <div class="mask"></div>
 </main>
@@ -193,7 +164,6 @@
 
 <script src="scripts/mask.js"></script>
 <script src="scripts/add-new-topic.js"></script>
-<script src="scripts/search-topic.js"></script>
 <script src="scripts/select-destination.js"></script>
 <script src="scripts/user.js"></script>
 <script src="scripts/model.js"></script>

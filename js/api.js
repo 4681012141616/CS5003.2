@@ -115,7 +115,6 @@ function configureApp(app) {
 
     app.post("/register", isExist, function (req, res, next) {
         let newUser = model.User.fromJSON(req.body);
-        //console.log(newUser);
         if (newUser) {
             mydb.insertData(newUser, function (err, result) {
                 if (err) {
@@ -146,8 +145,8 @@ function configureApp(app) {
     });
 
     app.post("/topic", isLogin, function (req, res, next) {
-        //console.log('topic login');
-        let newTopic = model.Topic.fromJSON(req.body);
+        let newTopic = req.body;
+        console.log(1, newTopic)
         if (newTopic) {
             mydb.insertData(newTopic, function (err, result) {
                 if (err) {

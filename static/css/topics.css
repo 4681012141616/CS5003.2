@@ -3,3 +3,44 @@
   font-weight: 100;
   color: #777;
 }
+
+#addNewTopicBtn {
+  height: 50px;
+  width: 250px;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+
+#addNewTopicForm {
+  width: 60vw;
+  padding: 0;
+  display: none;
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+
+#addNewTopicForm p {
+  margin-bottom: 5px;
+}
+
+#addNewTopicForm button {
+  height: 50px;
+  width: 5vw;
+  margin-top: 15px;
+}
+
+#addNewTopicForm div {
+  padding: 10px;
+  width: 55vw;
+  border: 1px solid gray;
+}
+
+#newTopicId {
+  height: 40px;
+}
+
+#newTopicContent {
+  height: 80px;
+  overflow: scroll;
+}

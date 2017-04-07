@@ -17,7 +17,7 @@ function populateForum( forum ) {
   $forumContainer.html('<h2>'+forum.topic+'<span>'+forum.userId+", "+forum.date+'</span></h2>');
   $forumContainer.append(addReply(forum.replies[0], 0));
 
-  $attractionContainer.append("<img id='close' src='../images/close.png'>");
+  $forumContainer.append("<img id='close' src='../images/close.png'>");
 
 
   function addReply( reply, parity ) {
@@ -112,7 +112,6 @@ function resetCommentListeners( replies ) {
       "replyDate": moment().format("DD MMMM YYYY, HH:mm")
     });
 
-    console.log(forumId);
     $.ajax({
         type: "PUT",
         dataType: "text",
@@ -122,9 +121,7 @@ function resetCommentListeners( replies ) {
           "repliesArray": repliesArray
         }),
         url: "/post/"+forumId,
-        success: function (){
-          console.log("Success!");
-        },
+        success: function (){},
         error: function () {
           console.log("error posting");
         }
@@ -138,7 +135,7 @@ function resetCommentListeners( replies ) {
 
 
   // upvote a comment
-  $('#forumMainContainer img').click(function(){
+  $('#forumMainContainer img:not(#close)').click(function(){
 
     var $this = $(this);
 
@@ -172,7 +169,21 @@ function resetCommentListeners( replies ) {
 
           $upvoteScore.html(newUpvoteScore);
 
-          // TODO: function here to post new repliesArray to database
+          $.ajax({
+              type: "PUT",
+              dataType: "text",
+              contentType: "application/json",
+              data: JSON.stringify({
+                "id": forumId,
+                "repliesArray": repliesArray
+              }),
+              url: "/post/"+forumId,
+              success: function (){},
+              error: function () {
+                console.log("error posting");
+              }
+
+          })
 
         },
         error: function (attraction) {
@@ -181,5 +192,10 @@ function resetCommentListeners( replies ) {
 
     })
 
+  });
+
+  $('#forumMainContainer #close').click(function(){
+    $(this).parent().hide();
+    hideMask();
   });
 }

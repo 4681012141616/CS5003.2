@@ -12,13 +12,13 @@
   display: none;
 }
 
-#attractionMainContainer #close {
+#forumMainContainer #close {
   position: fixed;
   top: 15.5vh;
   right: 10vw;
   height: 40px;
 }
-#attractionMainContainer #close:hover {
+#forumMainContainer #close:hover {
   cursor: pointer;
 }
 
@@ -57,7 +57,7 @@
   background: transparent;
 }
 
-#forumMainContainer img {
+#forumMainContainer img:not(#close) {
   height: 20px;
   margin: 0 0 -4px 4px;
 }

@@ -1,4 +1,5 @@
 var locationId;
+var $profileMainContainer = $("#profileMainContainer");
 
 $("#viewProfile a").click(function(){
   var username = $(this).text();
@@ -13,7 +14,7 @@ $("#viewProfile a").click(function(){
       url: "/user/"+ username,
       success: function (data){
         console.log(data);
-          populateProfile(data);
+          populateProfile(data.value);
       },
       error: function () {
           console.log("error");
@@ -26,21 +27,22 @@ $("#viewProfile a").click(function(){
 
 
 function populateProfile( profile ) {
+  $profileMainContainer.show();
   showMask();
 
-  $('#profileMainContainer').html('<h2>' + profile.username + '<span>Member since ' + profile.startDate + '</span></h2>');
-  $('#profileMainContainer').append('<div>' + profile.bio + '</div>');
-  $('#profileMainContainer').append('<h3>Favourite Places</h3>');
+  $profileMainContainer.html('<h2>' + profile.username + '<span>Member since ' + profile.startDate + '</span></h2>');
+  $profileMainContainer.append('<div>' + profile.bio + '</div>');
+  $profileMainContainer.append('<h3>Favourite Places</h3>');
 
   for (var i in profile.favouritePlaces)
-    $('#profileMainContainer').append('<span>' + profile.favouritePlaces[i] + '</span>');
+    $profileMainContainer.append('<span>' + profile.favouritePlaces[i] + '</span>');
 
-  $('#profileMainContainer').append('<h3></br>Most Recent Posts</h3>');
+  $profileMainContainer.append('<h3></br>Most Recent Posts</h3>');
 
   for (var i in profile.posts)
-    $('#profileMainContainer').append("<div id='post" + i + "' class='post'><h4>" + forums[profile.posts[i].postId] + '</h4><p>' + profile.posts[i].postContent + '</p></div>');
+    $profileMainContainer.append("<div id='post" + i + "' class='post'><h4>" + forums[profile.posts[i].postId] + '</h4><p>' + profile.posts[i].postContent + '</p></div>');
 
-  $('#profileMainContainer').append("<img src='../images/close.png'>");
+  $profileMainContainer.append("<img src='../images/close.png'>");
 
 
 

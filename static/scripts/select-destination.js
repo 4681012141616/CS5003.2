@@ -66,6 +66,7 @@ function displayInfo(data) {
         $searchResultContainer.show();
         var selectedDestination = $(this).text().toLowerCase().replace(/\s/g, "_");
         renderDestinationInfo(selectedDestination);
+        renderTopicList(selectedDestination);
     })
 }
 
@@ -124,7 +125,6 @@ function loadPlaces() {
         $.each(data, function(i,val){
           availablePlaceTags.push(val.value.place_name)
         });
-        console.log(availablePlaceTags);
       },
       error: function () {
           console.log("error");

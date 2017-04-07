@@ -88,10 +88,10 @@ function register() {
         var newuser = {
             "username": newusername,
             "email": newemail,
-            "newpassword": newpassword,
+            "password": newpassword,
             "startDate": startDate
         };
-        console.log(newuser);
+
         $.ajax
         ({
             type: "POST",
